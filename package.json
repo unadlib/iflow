@@ -1,0 +1,22 @@
+{
+  "name": "iflow",
+  "version": "0.0.1",
+  "description": "Hybrid state and action framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unadlib/iflow.git"
+  },
+  "author": {
+    "name": "unadlib",
+    "email": "unadlib@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unadlib/iflow/issues"
+  },
+  "homepage": "https://github.com/unadlib/iflow#readme"
+}
