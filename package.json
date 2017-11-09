@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/unadlib/iflow/issues"
   },
-  "homepage": "https://github.com/unadlib/iflow#readme"
+  "homepage": "https://github.com/unadlib/iflow#readme",
+  "devDependencies": {
+    "react": "^16.1.0"
+  }
 }
