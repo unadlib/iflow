@@ -9,5 +9,6 @@ Hybrid state/action framework support mutable and immutable.
 - [ ] Implement `RESTful` and `Graphql` middleware
 - [ ] Support `immutable`
 - [ ] Add `hoist-non-react-statics`
-- [ ] Support `multistage` pipes
+- [ ] Support `multistage` Pipes
 - [ ] Action use prototype-chain
+- [ ] Pipes support `insert`/`remove`
