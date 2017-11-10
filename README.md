@@ -6,7 +6,7 @@ Hybrid state/action framework support mutable and immutable.
 - [ ] Entry add `registry`
 - [ ] Inherit `ref`
 - [ ] Add `after` and `before` middleware
-- [ ] Implement `RESTful` and `Graphql` middleware
+- [ ] Implement `FSM`, `RESTful` and `Graphql` constructor
 - [ ] Support `immutable`
 - [ ] Add `hoist-non-react-statics`
 - [ ] Support `multistage` Pipes
