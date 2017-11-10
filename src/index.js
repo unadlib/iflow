@@ -73,12 +73,8 @@ export const createDistributor = (initDistributor = {}) => {
       }
     }
   }
-  distributor.subscribe = (listener) => {
-    subscriber.add(listener)
-  }
-  distributor.unsubscribe = (listener) => {
-    subscriber.delete(listener)
-  }
+  distributor.subscribe = (listener) => subscriber.add(listener)
+  distributor.unsubscribe = (listener) => subscriber.delete(listener)
   return distributor
 }
  
