@@ -1,5 +1,5 @@
 # iflow
-Hybrid state/action framework support mutable and immutable.
+Hybrid state/action framework support mutable and immutable for React.
 
 ### TODO
 - [x] Implement `createDistributor`/`subscriber`
