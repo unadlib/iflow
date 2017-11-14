@@ -5,10 +5,11 @@ Hybrid state/action framework support mutable and immutable for React.
 - [x] Implement `createDistributor`/`subscriber`
 - [ ] Entry add `registry`
 - [ ] Inherit `ref`
-- [ ] Add `after` and `before` middleware
-- [ ] Implement `FSM`, `RESTful` and `Graphql` constructor
+- [ ] Add middleware
 - [ ] Support `immutable`
 - [ ] Add `hoist-non-react-statics`
+- [ ] Pipes support `insert`/`remove`
+
 - [ ] Support `multistage` Pipes
 - [ ] Action use prototype-chain
-- [ ] Pipes support `insert`/`remove`
+- [ ] Implement `FSM`, `RESTful` and `Graphql` constructor
