@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
+import {fromJS,is} from 'immutable'
 
-export const createDistributor = (initDistributor = {}) => {
+export const createDistributor = (
+  initDistributor = {},
+  {
+    isImmutable = false,
+    shallowEqual = false,
+    withRef = true,
+    equal = (x,y) => Object.is(x,y),
+    middleware = []
+  } = {}
+) => {
   const register = new Map()
   const subscriber = new Set()
   const rootState = initDistributor
@@ -56,7 +66,7 @@ export const createDistributor = (initDistributor = {}) => {
         noticeWillUpdate () {
           const nextSerializedState = this.serializeSelectedState(rootState)
           //TODO: shallow equal?
-          if (this.serializedState !== nextSerializedState) {
+          if (is(fromJS(this.serializedState),fromJS(nextSerializedState))) {
             this.serializedState = nextSerializedState
             return this.forceUpdate()
           }
