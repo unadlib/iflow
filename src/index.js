@@ -5,9 +5,7 @@ export const createDistributor = (
   initDistributor = {},
   {
     isImmutable = false,
-    shallowEqual = false,
     withRef = true,
-    equal = (x,y) => Object.is(x,y),
     middleware = []
   } = {}
 ) => {
@@ -41,7 +39,7 @@ export const createDistributor = (
     })
   })
   // TODO: Add `registry`?
-  const distributor = ({registry, selector} = {}) => {
+  const distributor = ({registry, selector, updated} = {}) => {
     return (TargetComponent) => {
       return class Clazz extends Component {
         constructor (...args) {
