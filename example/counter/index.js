@@ -1,0 +1,53 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+ReactDOM.render(
+  <p>
+    criteria
+    publication
+    irregularity
+    inevitable
+    implement
+    activism
+    maximize
+    unattainable
+    capitalism
+    compensation
+    attempt
+    diluting
+    similarity
+    unreasonable
+    implementation
+    reinforce
+    generalize
+    initially
+    indicate
+    appoint
+    discourse
+    audit
+    conceding
+    ultimately
+    enviable
+    sequence
+    administrative
+    application
+    boost
+    realistic
+    vowel
+    phonetic
+    symbol
+    unstressed
+    duty
+    haste
+    agent
+    claim
+    calculate
+    estimate
+    entire
+    desire
+    compose
+    approach
+    throat
+  </p>,
+  document.getElementById('app')
+)

@@ -9,7 +9,7 @@ export default (x, y) => {
     return false
   }
   if (be.array(x)) {
-    if(x.length !== y.length){
+    if (x.length !== y.length) {
       return false
     } else {
       if (isMutualContains(x, y)) {
@@ -21,10 +21,8 @@ export default (x, y) => {
     const isKeysEqual = is(Object.keys(x), Object.keys(y))
     if (!isKeysEqual) {
       return false
-    } else {
-      if (isMutualContains(Object.values(x),Object.values(y))) {
-        return true
-      }
+    } else if (isMutualContains(Object.values(x), Object.values(y))) {
+      return true
     }
   }
   try {
