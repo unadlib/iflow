@@ -43,7 +43,16 @@ ReactDOM.render(<Body/>,document.getElementById('app'))
 ```
 
 ### Documentation
-
+* `createDistributor`
+* `subscribe`
+* `unsubscribe`
+* `registry`
+* `registry`
+* `selector`
+* `updated`
+* `immutable`
+* `withRef`
+* `middleware`
 ### Examples
 
 * [Counter](https://github.com/unadlib/iflow/tree/master/example/counter)
