@@ -1,44 +1,44 @@
 import React, { Component } from 'react'
-import {fromJS,is} from 'immutable'
+import be from 'be-type'
+import equal from './utils/equal'
 
-export const createDistributor = (
-  initDistributor = {},
-  {
-    isImmutable = false,
-    withRef = true,
-    middleware = []
-  } = {}
-) => {
+export const createDistributor = (initDistributor = {} , {
+  immutable = true,
+  withRef = true,
+  middleware = []
+} = {}) => {
   const register = new Map()
   const subscriber = new Set()
-  const rootState = initDistributor
-  const broadcast = (register) => {
-    register.forEach(noticeWillUpdate => noticeWillUpdate())
+  let rootState = initDistributor
+  const broadcast = (register, nextState) => {
+    register.forEach(noticeWillUpdate => noticeWillUpdate(nextState))
   }
   Object.entries(rootState).forEach(([key, pipes]) => {
     Object.entries(pipes).forEach(([pipeKey, pipe]) => {
-      if (typeof pipe === 'function') {
+      if (be.function(pipe)) {
         rootState[key][pipeKey] = function (...args) {
           const fn = pipe.bind(...[...args.slice(-1), ...args.slice(0, -1)])
-          fn(pipes, rootState)
-          // TODO : Refactor to immutable?
-          // const nextState = fn(pipes, rootState)
-          // const pureNextState = {}
-          // Object
-          //   .entries(nextState)
-          //   .filter(([key, value]) => typeof value !== 'function')
-          //   .forEach(([key, value]) => {
-          //     pureNextState[key] = value
-          //   })
-          // rootState[key] = Object(rootState[key], pureNextState)
-          // console.log(rootState, rootState[key],pureNextState,'rootState')
-          broadcast(register)
+          if (immutable) {
+            const nextState = fn(rootState[key], rootState)
+            if(nextState && rootState[key] !== nextState){
+              rootState[key] = nextState
+            }else{
+              throw `iflow is set to '{immutable: true}', function pipe must return new state object.`
+              return
+            }
+          } else {
+            const nextState = {...rootState[key]}
+            fn(nextState, rootState)
+            rootState[key] = {...nextState}
+          }
+          rootState = {...rootState}
+          broadcast(register, rootState)
           subscriber.forEach(listener => listener(rootState))
         }
       }
     })
   })
-  // TODO: Add `registry`?
+
   const distributor = ({registry, selector, updated} = {}) => {
     return (TargetComponent) => {
       return class Clazz extends Component {
@@ -46,27 +46,21 @@ export const createDistributor = (
           super(...args)
           this.registerSymbol = Symbol()
           register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
-          this.serializedState = this.serializeSelectedState(rootState)
+          this.currentState = selector(rootState)
         }
 
         mergeProps () {
-          const nextProps = selector ? selector(rootState) : rootState
           return {
             ...this.props,
-            ...nextProps,
+            ...this.currentState,
           }
         }
 
-        serializeSelectedState (rootState) {
-          return JSON.stringify(selector(rootState))
-        }
-
-        noticeWillUpdate () {
-          const nextSerializedState = this.serializeSelectedState(rootState)
-          //TODO: shallow equal?
-          if (is(fromJS(this.serializedState),fromJS(nextSerializedState))) {
-            this.serializedState = nextSerializedState
-            return this.forceUpdate()
+        noticeWillUpdate (nextRootState) {
+          const nextState = selector(nextRootState)
+          if (!equal(this.currentState, nextState)) {
+            this.currentState = nextState
+            return this.forceUpdate(updated)
           }
         }
 
@@ -81,8 +75,11 @@ export const createDistributor = (
       }
     }
   }
-  distributor.subscribe = (listener) => subscriber.add(listener)
-  distributor.unsubscribe = (listener) => subscriber.delete(listener)
+  distributor.subscribe = (listener) => {
+    return subscriber.add(listener)
+  }
+  distributor.unsubscribe = (listener) => {
+    return subscriber.delete(listener)
+  }
   return distributor
 }
- 

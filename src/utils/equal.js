@@ -18,7 +18,7 @@ export default (x, y) => {
     }
   }
   if (be.object(x)) {
-    const isKeysEqual = is(Object.keys(x), Object.keys(y))
+    const isKeysEqual = isImmutableEqual(Object.keys(x), Object.keys(y))
     if (!isKeysEqual) {
       return false
     } else if (isMutualContains(Object.values(x), Object.values(y))) {
@@ -28,9 +28,13 @@ export default (x, y) => {
   try {
     return JSON.stringify(x) === JSON.stringify(y)
   } catch (e) {}
-  return is(fromJS(x), fromJS(y))
+  return isImmutableEqual(x, y)
 }
 
 const isMutualContains = (x, y) => {
   return x.every(i => y.includes(i)) && y.every(i => x.includes(i))
+}
+
+const isImmutableEqual = (x, y) => {
+  return is(fromJS(x), fromJS(y))
 }

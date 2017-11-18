@@ -2,7 +2,7 @@
   "name": "iflow",
   "version": "0.0.1",
   "description": "Hybrid state and action framework.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/unadlib/iflow#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "be-type": "^1.0.2",
     "immutable": "^3.8.2",
     "react": "^16.1.0"
