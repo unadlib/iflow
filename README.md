@@ -48,3 +48,7 @@ ReactDOM.render(<Body/>,document.getElementById('app'))
 
 * Counter
 * Todos
+
+### Todo
+- [ ] Persistent
+- [ ] Memorable
