@@ -28,7 +28,7 @@ export const createDistributor = (initDistributor = {}, {
                 params
               }, rootState[key], rootState)
             })
-            const fn = pipe.bind(rootState[key], ...params) // bind `rootState[key]` or this?
+            const fn = pipe.bind(Object.create(null), ...params)
             if (immutable) {
               const nextState = fn(rootState[key], rootState)
               if (nextState && rootState[key] !== nextState) {
@@ -53,7 +53,7 @@ export const createDistributor = (initDistributor = {}, {
   insert(rootState)
   const distributor = ({
       registry,
-      selector = (rootState) => ({...rootState}),
+      selector = (rootState) => ({...rootState}), // TODO:  use memoize?
       updated
     } = {}) => {
     if (registry) {
