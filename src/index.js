@@ -14,32 +14,6 @@ export const createDistributor = (initDistributor = {} , {
   const broadcast = (register, nextState) => {
     register.forEach(noticeWillUpdate => noticeWillUpdate(nextState))
   }
-  // Object.entries(rootState).forEach(([key, pipes]) => {
-  //   Object.entries(pipes).forEach(([pipeKey, pipe]) => {
-  //     if (be.function(pipe)) {
-  //       rootState[key][pipeKey] = function (...args) {
-  //         const fn = pipe.bind(...[...args.slice(-1), ...args.slice(0, -1)])
-  //         if (immutable) {
-  //           const nextState = fn(rootState[key], rootState)
-  //           if(nextState && rootState[key] !== nextState){
-  //             rootState[key] = nextState
-  //           }else{
-  //             throw `iflow is set to '{immutable: true}', function pipe must return new state object.`
-  //             return
-  //           }
-  //         } else {
-  //           const nextState = {...rootState[key]}
-  //           fn(nextState, rootState)
-  //           rootState[key] = {...nextState}
-  //         }
-  //         rootState = {...rootState}
-  //         broadcast(register, rootState)
-  //         subscriber.forEach(listener => listener(rootState))
-  //       }
-  //     }
-  //   })
-  // })
-
   const insert = (registry) => {
     rootState = {...rootState,...registry}
     Object.entries(registry).forEach(([key, pipes]) => {
@@ -51,10 +25,9 @@ export const createDistributor = (initDistributor = {} , {
                 key,
                 pipeKey,
                 params
-              },rootState[key],rootState) //object freeze seal ?
+              },rootState[key],rootState)
             })
-            console.log(params)
-            const fn = pipe.bind(rootState[key],...params) // bind `ootState[key]` or this?
+            const fn = pipe.bind(rootState[key],...params) // bind `rootState[key]` or this?
             if (immutable) {
               const nextState = fn(rootState[key], rootState)
               if(nextState && rootState[key] !== nextState){
@@ -75,10 +48,13 @@ export const createDistributor = (initDistributor = {} , {
         }
       })
     })
-
   }
   insert(rootState)
-  const distributor = ({registry, selector, updated} = {}) => {
+  const distributor = ({
+    registry,
+    selector = (rootState) => ({...rootState}),
+    updated
+  } = {}) => {
     if(registry){
       insert(registry)
     }
@@ -90,6 +66,11 @@ export const createDistributor = (initDistributor = {} , {
           this.registerSymbol = Symbol()
           register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
           this.currentState = selector(rootState, this.props)
+          this.setWrappedInstance = this.setWrappedInstance.bind(this)
+        }
+
+        setWrappedInstance(ref) {
+          this.wrappedInstance = ref
         }
 
         mergeProps () {
@@ -102,7 +83,7 @@ export const createDistributor = (initDistributor = {} , {
         getProps() {
           const props = this.mergeProps()
           if(withRef){
-            props.refs = this
+            props.ref = this.setWrappedInstance
           }
           return props
         }

@@ -1,14 +1,50 @@
-# iflow
-Hybrid state/action framework support mutable and immutable for React.
+# Iflow
+Iflow may be the simplest state management framework, it's a Hybrid state/action framework support mutable and immutable for React.
 
-### TODO
-- [x] Implement `createDistributor`/`subscriber`
-- [x] Entry add `registry`
-- [x] Support `immutable` mode
-- [x] Add middleware
-- [x] Inherit `ref`
-- [x] Add `hoist-non-react-statics`
+### Installation
+```bash
+yarn add iflow
+```
 
-- [ ] Support `multistage` Pipes
-- [ ] Action use prototype-chain
-- [ ] Implement `FSM`, `RESTful` and `Graphql` constructor
+### Gist
+```javascript
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import { createDistributor } from 'iflow'
+
+const distribute = createDistributor({
+  count: {
+    calculate: (number, self) => {
+      return {
+        ...self,
+        counter: self.counter + number
+      }
+    },
+    counter: 0,
+  }
+})
+
+@distribute()
+class Body extends Component {
+  render () {
+    return (
+      <div>
+        <button onClick={()=>this.props.count.calculate(-1)}>-</button>
+        {this.props.count.counter}
+        <button onClick={()=>this.props.count.calculate(1)}>+</button>
+      </div>
+    )
+  }
+}
+
+
+ReactDOM.render(<Body/>,document.getElementById('app'))
+
+```
+
+### Documentation
+
+### Examples
+
+* Counter
+* Todos
