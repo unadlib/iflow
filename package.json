@@ -27,5 +27,8 @@
     "be-type": "^1.0.2",
     "immutable": "^3.8.2",
     "react": "^16.1.0"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^2.3.1"
   }
 }

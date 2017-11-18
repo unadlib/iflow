@@ -26,9 +26,10 @@ const distribute = createDistributor({
 })
 
 @distribute({
-  selector: ({count}) => {
+  selector: ({count},{test}) => {
     return {
       count,
+      test1: test
     }
   },
   updated: () => {
@@ -52,7 +53,7 @@ class Body extends Component {
   render () {
     return (
       <div>
-        <Test/>
+        <Test test={1}/>
         <Brother/>
       </div>
     )

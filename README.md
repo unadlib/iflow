@@ -6,8 +6,8 @@ Hybrid state/action framework support mutable and immutable for React.
 - [x] Entry add `registry`
 - [x] Support `immutable` mode
 - [x] Add middleware
-- [ ] Inherit `ref`
-- [ ] Add `hoist-non-react-statics`
+- [x] Inherit `ref`
+- [x] Add `hoist-non-react-statics`
 
 - [ ] Support `multistage` Pipes
 - [ ] Action use prototype-chain

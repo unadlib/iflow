@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import hoistStatics from 'hoist-non-react-statics'
 import be from 'be-type'
 import equal from './utils/equal'
 
@@ -82,12 +83,13 @@ export const createDistributor = (initDistributor = {} , {
       insert(registry)
     }
     return (TargetComponent) => {
-      return class Clazz extends Component {
+      class Clazz extends Component {
+        static WrappedComponent = TargetComponent
         constructor (...args) {
           super(...args)
           this.registerSymbol = Symbol()
           register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
-          this.currentState = selector(rootState)
+          this.currentState = selector(rootState, this.props)
         }
 
         mergeProps () {
@@ -97,8 +99,16 @@ export const createDistributor = (initDistributor = {} , {
           }
         }
 
+        getProps() {
+          const props = this.mergeProps()
+          if(withRef){
+            props.refs = this
+          }
+          return props
+        }
+
         noticeWillUpdate (nextRootState) {
-          const nextState = selector(nextRootState)
+          const nextState = selector(nextRootState, this.props)
           if (!equal(this.currentState, nextState)) {
             this.currentState = nextState
             return this.forceUpdate(updated)
@@ -110,10 +120,11 @@ export const createDistributor = (initDistributor = {} , {
         }
 
         render () {
-          const props = this.mergeProps()
+          const props = this.getProps()
           return <TargetComponent {...props}/>
         }
       }
+      return hoistStatics(Clazz, TargetComponent)
     }
   }
   distributor.subscribe = (listener) => {
