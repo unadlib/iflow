@@ -20,7 +20,7 @@ export const createDistributor = (initDistributor = {}, {
     Object.entries(registry).forEach(([key, pipes]) => {
       Object.entries(pipes).forEach(([pipeKey, pipe]) => {
         if (be.function(pipe)) {
-          rootState[key][pipeKey] = (...params) => {
+          rootState[key][pipeKey] = function (...params) {
             middleware.forEach((applyMiddleware) => {
               applyMiddleware({
                 key,
@@ -28,7 +28,7 @@ export const createDistributor = (initDistributor = {}, {
                 params
               }, rootState[key], rootState)
             })
-            const fn = pipe.bind(Object.create(null), ...params)
+            const fn = pipe.bind(rootState[key], ...params)
             if (immutable) {
               const nextState = fn(rootState[key], rootState)
               if (nextState && rootState[key] !== nextState) {
@@ -45,6 +45,7 @@ export const createDistributor = (initDistributor = {}, {
             rootState = {...rootState}
             broadcast(register, rootState)
             subscriber.forEach(listener => listener(rootState))
+            return this
           }
         }
       })
