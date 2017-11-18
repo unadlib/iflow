@@ -2,7 +2,7 @@ import be from 'be-type'
 
 export default (func, resolver) => {
   if (!be.function(func) || (!be.Nil(resolver) && !be.function(resolver))) {
-    throw new Error(`Error`)
+    throw new Error(`Expected to be a function`)
   }
 
   function memoized (...args) {

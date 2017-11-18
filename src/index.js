@@ -34,8 +34,10 @@ export const createDistributor = (initDistributor = {}, {
               if (nextState && rootState[key] !== nextState) {
                 rootState[key] = nextState
               } else {
-                throw new Error(`Iflow is set to '{immutable: true}', function pipe must return new state object.`)
-                return
+                throw new Error(`
+                  Iflow is set to '{immutable: true}', 
+                  function pipe return result is expected to be a new state object.
+                `)
               }
             } else {
               const nextState = {...rootState[key]}
