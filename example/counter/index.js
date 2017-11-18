@@ -7,17 +7,22 @@ const distribute = createDistributor({
     decrease: (number, self, store) => {
       self.result = self.result + number
     },
-    increase: (number, self, store) => {
+    increase: (number, self) => {
       return {
         ...self,
         result: self.result + number
       }
     },
     result: 0,
-  },
-  brother: {
-    data: 1,
   }
+}, {
+  middleware: [
+    ({pipeKey,key,params}, self, store) => {
+      if(key === 'count' && pipeKey === 'increase'){
+        params[0] = 2
+      }
+    }
+  ]
 })
 
 @distribute({
@@ -26,7 +31,7 @@ const distribute = createDistributor({
       count,
     }
   },
-  updated: () =>{
+  updated: () => {
     return console.log('updated')
   }
 })
@@ -35,9 +40,9 @@ class Test extends Component {
     console.log('Test Render', this.props)
     return (
       <div>
-        <button onClick={this.props.count.decrease.bind(this, -1)}>-</button>
+        <button onClick={()=>this.props.count.decrease(-1)}>-</button>
         {this.props.count.result}
-        <button onClick={this.props.count.increase.bind(this, 1)}>+</button>
+        <button onClick={()=>this.props.count.increase(1)}>+</button>
       </div>
     )
   }
@@ -60,17 +65,30 @@ class BrotherComponent extends Component {
     return (
       <div>
         {this.props.brother}
-        {this.props.count}
+        <button onClick={()=>this.props.change()}>测试</button>
       </div>
     )
   }
 }
 
 const Brother = distribute({
+  registry: {
+    brother: {
+      change: (self) => {
+        return {
+          ...self,
+          data: 'data',
+        }
+      },
+      data: 'test',
+    }
+  },
   selector: (state) => {
     const brother = state.brother.data
+    const change = state.brother.change
     return {
       brother,
+      change,
     }
   },
 })(BrotherComponent)

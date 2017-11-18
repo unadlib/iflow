@@ -13,33 +13,74 @@ export const createDistributor = (initDistributor = {} , {
   const broadcast = (register, nextState) => {
     register.forEach(noticeWillUpdate => noticeWillUpdate(nextState))
   }
-  Object.entries(rootState).forEach(([key, pipes]) => {
-    Object.entries(pipes).forEach(([pipeKey, pipe]) => {
-      if (be.function(pipe)) {
-        rootState[key][pipeKey] = function (...args) {
-          const fn = pipe.bind(...[...args.slice(-1), ...args.slice(0, -1)])
-          if (immutable) {
-            const nextState = fn(rootState[key], rootState)
-            if(nextState && rootState[key] !== nextState){
-              rootState[key] = nextState
-            }else{
-              throw `iflow is set to '{immutable: true}', function pipe must return new state object.`
-              return
-            }
-          } else {
-            const nextState = {...rootState[key]}
-            fn(nextState, rootState)
-            rootState[key] = {...nextState}
-          }
-          rootState = {...rootState}
-          broadcast(register, rootState)
-          subscriber.forEach(listener => listener(rootState))
-        }
-      }
-    })
-  })
+  // Object.entries(rootState).forEach(([key, pipes]) => {
+  //   Object.entries(pipes).forEach(([pipeKey, pipe]) => {
+  //     if (be.function(pipe)) {
+  //       rootState[key][pipeKey] = function (...args) {
+  //         const fn = pipe.bind(...[...args.slice(-1), ...args.slice(0, -1)])
+  //         if (immutable) {
+  //           const nextState = fn(rootState[key], rootState)
+  //           if(nextState && rootState[key] !== nextState){
+  //             rootState[key] = nextState
+  //           }else{
+  //             throw `iflow is set to '{immutable: true}', function pipe must return new state object.`
+  //             return
+  //           }
+  //         } else {
+  //           const nextState = {...rootState[key]}
+  //           fn(nextState, rootState)
+  //           rootState[key] = {...nextState}
+  //         }
+  //         rootState = {...rootState}
+  //         broadcast(register, rootState)
+  //         subscriber.forEach(listener => listener(rootState))
+  //       }
+  //     }
+  //   })
+  // })
 
+  const insert = (registry) => {
+    rootState = {...rootState,...registry}
+    Object.entries(registry).forEach(([key, pipes]) => {
+      Object.entries(pipes).forEach(([pipeKey, pipe]) => {
+        if (be.function(pipe)) {
+          rootState[key][pipeKey] = function (...params) {
+            middleware.forEach((applyMiddleware)=>{
+              applyMiddleware({
+                key,
+                pipeKey,
+                params
+              },rootState[key],rootState) //object freeze seal ?
+            })
+            console.log(params)
+            const fn = pipe.bind(rootState[key],...params) // bind `ootState[key]` or this?
+            if (immutable) {
+              const nextState = fn(rootState[key], rootState)
+              if(nextState && rootState[key] !== nextState){
+                rootState[key] = nextState
+              }else{
+                throw `iflow is set to '{immutable: true}', function pipe must return new state object.`
+                return
+              }
+            } else {
+              const nextState = {...rootState[key]}
+              fn(nextState, rootState)
+              rootState[key] = {...nextState}
+            }
+            rootState = {...rootState}
+            broadcast(register, rootState)
+            subscriber.forEach(listener => listener(rootState))
+          }
+        }
+      })
+    })
+
+  }
+  insert(rootState)
   const distributor = ({registry, selector, updated} = {}) => {
+    if(registry){
+      insert(registry)
+    }
     return (TargetComponent) => {
       return class Clazz extends Component {
         constructor (...args) {
