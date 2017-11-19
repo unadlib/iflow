@@ -1,7 +1,9 @@
 import { fromJS, is } from 'immutable'
 import be from 'be-type'
 
-export default (x, y) => {
+const MAX_THRESHOLD = 2**16
+
+export default (x, y, {isFilterFn = false} = {}) => {
   if (Object.is(x, y)) {
     return true
   }
@@ -21,12 +23,21 @@ export default (x, y) => {
     const isKeysEqual = is(fromJS(Object.keys(x)), fromJS(Object.keys(y)))
     if (!isKeysEqual) {
       return false
-    } else if (isMutualContains(Object.values(x), Object.values(y))) {
+    } else if (
+      isMutualContains(
+        Object.values(x).filter(filterFunc(isFilterFn)),
+        Object.values(y).filter(filterFunc(isFilterFn)),
+      )
+    ) {
       return true
     }
   }
   try {
-    return JSON.stringify(x) === JSON.stringify(y)
+    const stringifyX = JSON.stringify(x)
+    if (stringifyX.length > MAX_THRESHOLD){
+      return false
+    }
+    return stringifyX === JSON.stringify(y)
   } catch (e) {}
   return isImmutableEqual(x, y)
 }
@@ -34,6 +45,8 @@ export default (x, y) => {
 const isMutualContains = (x, y) => {
   return x.every(i => y.includes(i)) && y.every(i => x.includes(i))
 }
+
+const filterFunc = isFilterFunc => item => !filterFunc || !be.function(item)
 
 const isImmutableEqual = (x, y) => {
   return is(fromJS(x), fromJS(y))

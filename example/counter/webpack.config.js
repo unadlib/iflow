@@ -1,16 +1,16 @@
 const aliasWebpackPlugin = require('alias-webpack-plugin')
 
 module.exports = {
-  entry: "./index.js",
+  entry: './index.js',
   output: {
-    filename: "bundle.js",
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
         test: /\.js|\.jsx/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: 'babel-loader',
       }
     ]
   },
@@ -19,4 +19,4 @@ module.exports = {
       ...aliasWebpackPlugin.default(),
     },
   }
-};
+}
