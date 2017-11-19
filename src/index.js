@@ -96,7 +96,7 @@ export const createDistributor = (initDistributor = {}, {
 
         noticeWillUpdate (nextRootState) {
           const nextState = selector(nextRootState, this.props)
-          if (!equal(this.currentState, nextState, {filterFunc: true})) {
+          if (!equal(this.currentState, nextState)) {
             this.currentState = nextState
             return this.forceUpdate(updated)
           }

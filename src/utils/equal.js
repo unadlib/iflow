@@ -3,7 +3,7 @@ import be from 'be-type'
 
 const MAX_THRESHOLD = 2**16
 
-export default (x, y, {isFilterFn = false} = {}) => {
+export default (x, y, {isFilterFn = true} = {}) => {
   if (Object.is(x, y)) {
     return true
   }
