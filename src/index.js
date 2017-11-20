@@ -70,8 +70,7 @@ export const createDistributor = (initDistributor = {}, {
           super(...args)
           this.registerSymbol = Symbol()
           register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
-          this.selector =
-            this.currentState = selector(rootState, this.props)
+          this.currentState = selector(rootState, this.props)
           this.setWrappedInstance = this.setWrappedInstance.bind(this)
         }
 
