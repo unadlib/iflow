@@ -6,7 +6,8 @@ import AddTodo from './src/addTodo'
 import TodoList from './src/todoList'
 import Footer from './src/footer'
 
-const store = createDistributor({
+
+const immutable = [{
   todos: {
     add: (addItem, self) => {
       return {
@@ -46,7 +47,29 @@ const store = createDistributor({
     list: [],
     tabStatus: 'All'
   },
-})
+}]
+const mutable = [{
+  todos: {
+    add: (addItem, self) => {
+      self.list.push(addItem)
+    },
+    toggleTodo: (currentId, self) => {
+      const current = self.list.find(({id}) => id === currentId)
+      current.completed = !current.completed
+    },
+    clearCompleted: (self) => {
+      self.list = []
+    },
+    toggleTab: (tabStatus, self) => {
+      self.tabStatus = tabStatus
+    },
+    list: [],
+    tabStatus: 'All'
+  },
+},{
+  immutable: false
+}]
+const store = createDistributor(...mutable)
 
 ReactDOM.render(
   <Provider store={store}>

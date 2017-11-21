@@ -125,6 +125,7 @@ export const createDistributor = function (initDistributor = {}, {
     rootState,
     register,
     subscriber,
+    immutable,
   }
 }
 
@@ -169,7 +170,8 @@ export const distributor = ({
 
       constructor (...args) {
         super(...args)
-        const {register, rootState} = args[1].store
+        const {register, rootState,immutable} = args[1].store
+        this.immutable = immutable
         this.registerSymbol = Symbol()
         register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
         this.currentState = selector(rootState, this.props)
@@ -197,7 +199,7 @@ export const distributor = ({
 
       noticeWillUpdate (nextRootState) {
         const nextState = selector(nextRootState, this.props)
-        if (!equal(this.currentState, nextState)) {
+        if (!equal(this.currentState, nextState)||!this.immutable) {
           this.currentState = nextState
           return this.forceUpdate(updated)
         }
