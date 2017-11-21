@@ -10,9 +10,9 @@ yarn add iflow
 ```javascript
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { createDistributor } from 'iflow'
+import { createDistributor, distributor} from 'iflow'
 
-const distribute = createDistributor({
+const Provider = createDistributor({
   count: {
     calculate: (number, self) => {
       return {
@@ -24,21 +24,20 @@ const distribute = createDistributor({
   }
 })
 
-@distribute()
+@distributor()
 class Body extends Component {
   render () {
     return (
       <div>
-        <button onClick={()=>this.props.count.calculate(-1)}>-</button>
+        <button onClick={() => this.props.count.calculate(-1)}>-</button>
         {this.props.count.counter}
-        <button onClick={()=>this.props.count.calculate(1)}>+</button>
+        <button onClick={() => this.props.count.calculate(1)}>+</button>
       </div>
     )
   }
 }
 
-
-ReactDOM.render(<Body/>,document.getElementById('app'))
+ReactDOM.render(<Provider><Body/></Provider>,document.getElementById('app'))
 
 ```
 
