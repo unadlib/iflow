@@ -11,5 +11,10 @@ module.exports = {
         loader: "babel-loader",
       }
     ]
+  },
+  resolve: {
+    alias: {
+      ...require('alias-webpack-plugin').default(),
+    },
   }
 };

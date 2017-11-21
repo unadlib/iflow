@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, Children } from 'react'
+import PropTypes from 'prop-types'
 import hoistStatics from 'hoist-non-react-statics'
 import be from 'be-type'
 import equal from './utils/equal'
 // import memoize from './utils/memoize'
 
-export const createDistributor = (initDistributor = {}, {
+export const createDistributor = function (initDistributor = {}, {
   immutable = true,
   withRef = true,
   middleware = []
-} = {}) => {
+} = {}) {
   const register = new Map()
   const subscriber = new Set()
   let rootState = initDistributor
@@ -54,71 +55,164 @@ export const createDistributor = (initDistributor = {}, {
     })
   }
   insert(rootState)
-  const distributor = ({
-      registry,
-      selector = (rootState) => ({...rootState}), // TODO:  use memoize?
-      updated
-    } = {}) => {
-    if (registry) {
-      insert(registry)
+  // const distributor = ({
+  //     registry,
+  //     selector = (rootState) => ({...rootState}), // TODO:  use memoize?
+  //     updated
+  //   } = {}) => {
+  //   if (registry) {
+  //     insert(registry)
+  //   }
+  //   return (TargetComponent) => {
+  //     class Clazz extends Component {
+  //       static WrappedComponent = TargetComponent
+  //
+  //       constructor (...args) {
+  //         super(...args)
+  //         this.registerSymbol = Symbol()
+  //         register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
+  //         this.currentState = selector(rootState, this.props)
+  //         this.setWrappedInstance = this.setWrappedInstance.bind(this)
+  //       }
+  //
+  //       setWrappedInstance (ref) {
+  //         this.wrappedInstance = ref
+  //       }
+  //
+  //       mergeProps () {
+  //         return {
+  //           ...this.props,
+  //           ...this.currentState,
+  //         }
+  //       }
+  //
+  //       getProps () {
+  //         const props = this.mergeProps()
+  //         if (withRef) {
+  //           props.ref = this.setWrappedInstance
+  //         }
+  //         return props
+  //       }
+  //
+  //       noticeWillUpdate (nextRootState) {
+  //         const nextState = selector(nextRootState, this.props)
+  //         if (!equal(this.currentState, nextState)) {
+  //           this.currentState = nextState
+  //           return this.forceUpdate(updated)
+  //         }
+  //       }
+  //
+  //       componentWillUnmount () {
+  //         register.delete(this.registerSymbol)
+  //       }
+  //
+  //       render () {
+  //         const props = this.getProps()
+  //         return <TargetComponent {...props}/>
+  //       }
+  //     }
+  //
+  //     return hoistStatics(Clazz, TargetComponent)
+  //   }
+  // }
+  // rootState.subscribe = (listener) => {
+  //   return subscriber.add(listener)
+  // }
+  // rootState.unsubscribe = (listener) => {
+  //   return subscriber.delete(listener)
+  // }
+  return {
+    rootState,
+    register,
+    subscriber,
+  }
+}
+
+export class Provider extends Component {
+  static propTypes = {
+    store: PropTypes.object.isRequired,
+    children: PropTypes.element.isRequired,
+  }
+  static childContextTypes = {
+    store: PropTypes.object.isRequired,
+  }
+
+  getChildContext () {
+    return {
+      store: this.props.store
     }
-    return (TargetComponent) => {
-      class Clazz extends Component {
-        static WrappedComponent = TargetComponent
+  }
 
-        constructor (...args) {
-          super(...args)
-          this.registerSymbol = Symbol()
-          register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
-          this.currentState = selector(rootState, this.props)
-          this.setWrappedInstance = this.setWrappedInstance.bind(this)
-        }
+  constructor (...args) {
+    super(...args)
+  }
 
-        setWrappedInstance (ref) {
-          this.wrappedInstance = ref
-        }
+  render () {
+    return Children.only(this.props.children)
+  }
+}
 
-        mergeProps () {
-          return {
-            ...this.props,
-            ...this.currentState,
-          }
-        }
+export const distributor = ({
+                              registry,
+                              selector = (rootState) => ({...rootState}), // TODO:  use memoize?
+                              updated
+                            } = {}) => {
+  if (registry) {
+    insert(registry)
+  }
+  return (TargetComponent) => {
+    class Clazz extends Component {
+      static WrappedComponent = TargetComponent
+      static contextTypes = {
+        store: PropTypes.object.isRequired,
+      }
 
-        getProps () {
-          const props = this.mergeProps()
-          if (withRef) {
-            props.ref = this.setWrappedInstance
-          }
-          return props
-        }
+      constructor (...args) {
+        super(...args)
+        const {register, rootState} = args[1].store
+        this.registerSymbol = Symbol()
+        register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
+        this.currentState = selector(rootState, this.props)
+        this.setWrappedInstance = this.setWrappedInstance.bind(this)
+      }
 
-        noticeWillUpdate (nextRootState) {
-          const nextState = selector(nextRootState, this.props)
-          if (!equal(this.currentState, nextState)) {
-            this.currentState = nextState
-            return this.forceUpdate(updated)
-          }
-        }
+      setWrappedInstance (ref) {
+        this.wrappedInstance = ref
+      }
 
-        componentWillUnmount () {
-          register.delete(this.registerSymbol)
-        }
-
-        render () {
-          const props = this.getProps()
-          return <TargetComponent {...props}/>
+      mergeProps () {
+        return {
+          ...this.props,
+          ...this.currentState,
         }
       }
 
-      return hoistStatics(Clazz, TargetComponent)
+      getProps () {
+        const props = this.mergeProps()
+        // if (withRef) {
+        //   props.ref = this.setWrappedInstance
+        // }
+        return props
+      }
+
+      noticeWillUpdate (nextRootState) {
+        const nextState = selector(nextRootState, this.props)
+        if (!equal(this.currentState, nextState)) {
+          this.currentState = nextState
+          return this.forceUpdate(updated)
+        }
+      }
+
+      componentWillUnmount () {
+        register.delete(this.registerSymbol)
+      }
+
+      render () {
+        const props = this.getProps()
+        return <TargetComponent {...props}/>
+      }
     }
+
+    return hoistStatics(Clazz, TargetComponent)
   }
-  distributor.subscribe = (listener) => {
-    return subscriber.add(listener)
-  }
-  distributor.unsubscribe = (listener) => {
-    return subscriber.delete(listener)
-  }
-  return distributor
 }
