@@ -121,12 +121,19 @@ export const createDistributor = function (initDistributor = {}, {
   // rootState.unsubscribe = (listener) => {
   //   return subscriber.delete(listener)
   // }
-  return {
+  const store = {
     rootState,
     register,
     subscriber,
     immutable,
   }
+  return (
+    (props) => (
+      <Provider store={store}>
+        {props.children}
+      </Provider>
+    )
+  )
 }
 
 export class Provider extends Component {
@@ -170,7 +177,7 @@ export const distributor = ({
 
       constructor (...args) {
         super(...args)
-        const {register, rootState,immutable} = args[1].store
+        const {register, rootState, immutable} = args[1].store
         this.immutable = immutable
         this.registerSymbol = Symbol()
         register.set(this.registerSymbol, this.noticeWillUpdate.bind(this))
@@ -199,7 +206,7 @@ export const distributor = ({
 
       noticeWillUpdate (nextRootState) {
         const nextState = selector(nextRootState, this.props)
-        if (!equal(this.currentState, nextState)||!this.immutable) {
+        if (!equal(this.currentState, nextState) || !this.immutable) {
           this.currentState = nextState
           return this.forceUpdate(updated)
         }

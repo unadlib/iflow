@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider, createDistributor } from 'iflow'
+import { createDistributor } from 'iflow'
 
 import AddTodo from './src/addTodo'
 import TodoList from './src/todoList'
@@ -69,10 +69,10 @@ const mutable = [{
 },{
   immutable: false
 }]
-const store = createDistributor(...mutable)
+const Provider = createDistributor(...mutable)
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider>
     <div>
       <AddTodo/>
       <TodoList/>

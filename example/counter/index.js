@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { createDistributor } from 'iflow'
+import { createDistributor, distributor} from 'iflow'
 
-const distribute = createDistributor({
+const Provider = createDistributor({
   count: {
     calculate: (number, self) => {
       return {
@@ -14,7 +14,7 @@ const distribute = createDistributor({
   }
 })
 
-@distribute()
+@distributor()
 class Body extends Component {
   render () {
     return (
@@ -28,6 +28,8 @@ class Body extends Component {
 }
 
 ReactDOM.render(
-  <Body/>,
+  <Provider>
+    <Body/>
+  </Provider>,
   document.getElementById('app')
 )

@@ -58,4 +58,4 @@ typings/
 
 # dotenv environment variables file
 .env
-
+bundle.js

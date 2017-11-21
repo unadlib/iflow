@@ -44,19 +44,19 @@ ReactDOM.render(<Body/>,document.getElementById('app'))
 
 ### Documentation
 * `createDistributor`
-* `subscribe`
-* `unsubscribe`
-* `registry`
+* `distributor`
+* `subscribe` [x]
+* `unsubscribe` [x]
 * `registry`
 * `selector`
 * `updated`
 * `immutable`
-* `withRef`
+* `withRef` [x]
 * `middleware`
 ### Examples
 
 * [Counter](https://github.com/unadlib/iflow/tree/master/example/counter)
-* Todos
+* [Todos](https://github.com/unadlib/iflow/tree/master/example/todos)
 
 ### Todo
 - [ ] Persistent
