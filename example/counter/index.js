@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { createDistributor, distributor} from 'iflow'
+import { createProvider, distributor} from 'iflow'
 
-const Provider = createDistributor({
+const Provider = createProvider({
   count: {
     calculate: (number, self) => {
       return {

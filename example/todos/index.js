@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createDistributor } from 'iflow'
+import { createProvider } from 'iflow'
 
 import AddTodo from './src/addTodo'
 import TodoList from './src/todoList'
@@ -35,7 +35,9 @@ const immutable = [{
     clearCompleted: (self) => {
       return {
         ...self,
-        list: [],
+        list: [
+          ...self.list.filter(({completed})=>!completed)
+        ],
       }
     },
     toggleTab: (tabStatus, self) => {
@@ -58,7 +60,7 @@ const mutable = [{
       current.completed = !current.completed
     },
     clearCompleted: (self) => {
-      self.list = []
+      self.list = self.list.filter(({completed})=>!completed)
     },
     toggleTab: (tabStatus, self) => {
       self.tabStatus = tabStatus
@@ -69,7 +71,7 @@ const mutable = [{
 },{
   immutable: false
 }]
-const Provider = createDistributor(...mutable)
+const Provider = createProvider(...immutable)
 
 ReactDOM.render(
   <Provider>
