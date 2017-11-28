@@ -1,5 +1,3 @@
-const aliasWebpackPlugin = require('alias-webpack-plugin')
-
 module.exports = {
   entry: './index.js',
   output: {
@@ -16,7 +14,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      ...aliasWebpackPlugin.default(),
+      ...require('alias-webpack-plugin').default('../alias.config.js'),
     },
   }
 }

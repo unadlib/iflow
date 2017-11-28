@@ -14,7 +14,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      ...require('alias-webpack-plugin').default(),
+      ...require('alias-webpack-plugin').default('../alias.config.js'),
     },
   }
 };
