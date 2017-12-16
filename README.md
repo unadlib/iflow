@@ -1,5 +1,5 @@
 # iFlow
-iFlow may be a simplest state management framework.
+iFlow is a simple state/action management framework.
 
 ---
     It's a Hybrid state/action framework support mutable and immutable.
