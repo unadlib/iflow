@@ -7,7 +7,7 @@ const pipe = iFlow({
   counter: 0,
 })
 
-const c = iFlow({
+const c =  iFlow({
   a: pipe
 })
 
@@ -18,9 +18,17 @@ const root = iFlow({
 root.on((store) => {
   console.log('listen pre change store get counter: ', store.c.a.counter)
 })
+root.addMiddleware([
+  (...args) => {
+    return args.splice(-1)[0] + 100
+  },
+  (...args) => {
+    return args.splice(-1)[0] + 200
+  }
+])
 const store = root.create({
-  c: {
-    a: {
+  c:{
+    a:{
       counter: 10
     }
   }
@@ -28,5 +36,7 @@ const store = root.create({
 
 store.c.a.calculate(1)
 store.c.a.calculate(1)
-store.c.a.calculate(1)
+// store.c.a.calculate(1)
+// store.c.a.calculate(1)
+// store.c.a.calculate(1)
 

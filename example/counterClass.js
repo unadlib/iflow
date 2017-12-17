@@ -26,6 +26,14 @@ const pipe = iFlow(new C())
 pipe.on((store) => {
   console.log('listen pre change store get counter: ', store.c.s.counter)
 })
+pipe.addMiddleware([
+  (...args) => {
+    return args.splice(-1)[0] + 100
+  },
+  (...args) => {
+    return args.splice(-1)[0] + 200
+  }
+])
 const store = pipe.create({
   c: {
     s: {
@@ -33,7 +41,6 @@ const store = pipe.create({
     }
   }
 })
-console.log(store)
 store.c.s.calculate(1)
 store.c.s.calculate(1)
 
