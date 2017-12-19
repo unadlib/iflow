@@ -6,7 +6,6 @@ class Counter {
   }
   calculate (number) {
     this.counter += number
-
   }
 }
 
