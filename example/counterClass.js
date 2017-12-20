@@ -22,8 +22,8 @@ class C{
   }
 }
 const pipe = iFlow(new C())
-pipe.on((store) => {
-  console.log('listen pre change store get counter: ', store.c.s.counter)
+pipe.on((...args) => {
+  console.log('listen pre change store get counter: ', ...args)
 })
 pipe.addMiddleware([
   (...args) => {
