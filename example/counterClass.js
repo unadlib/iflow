@@ -2,44 +2,30 @@ import iFlow from '../lib'
 
 class Counter {
   constructor () {
-    this.counter = 0
+    this.counter = []
   }
   calculate (number) {
-    this.counter += number
+    this.counter.push({a:1})
+  }
+  a(){
+    this.counter[0].a += 100
   }
 }
 
-const s = iFlow(new Counter())
-class A{
-  constructor (){
-    this.s = s
-  }
-}
-const c = iFlow(new A())
-class C{
-  constructor (){
-    this.c = c
-  }
-}
-const pipe = iFlow(new C())
+const pipe = iFlow(new Counter())
+
 pipe.on((...args) => {
   console.log('listen pre change store get counter: ', ...args)
 })
-pipe.addMiddleware([
-  (...args) => {
-    return args.splice(-1)[0] + 100
-  },
-  (...args) => {
-    return args.splice(-1)[0] + 200
-  }
-])
-const store = pipe.create({
-  c: {
-    s: {
-      counter: 10
-    }
-  }
-})
-store.c.s.calculate(1)
-store.c.s.calculate(1)
+// pipe.addMiddleware([
+//   (...args) => {
+//     return args.splice(-1)[0] + 100
+//   },
+//   (...args) => {
+//     return args.splice(-1)[0] + 200
+//   }
+// ])
+const store = pipe.create()
+store.calculate(1)
+store.a(1)
 
