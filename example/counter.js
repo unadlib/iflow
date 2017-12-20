@@ -2,15 +2,13 @@ import iFlow from '../lib'
 
 const pipe = iFlow({
   calculate: function(n) {
-    if(!this.a) {
-      this.a = {e:1}
-      this.c = function(n){
-        this.a.e += n
-      }
-    }else{
-      this.c(100)
-    }
-  }
+    this.arr.push([{a:n}])
+  },
+  add: function (n) {
+    this.arr[0][0].a += n
+
+  },
+  arr: []
 })
 
 
@@ -29,8 +27,5 @@ pipe.on(
 const store = pipe.create()
 
 store.calculate(1)
-store.calculate(1)
+store.add(1)
 
-// setTimeout(()=>{
-//   console.log(store)
-// })
