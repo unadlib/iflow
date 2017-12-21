@@ -18,11 +18,11 @@ pipe.on(
   }
 )
 
-// pipe.addMiddleware([
-//   (...args) => {
-//     console.log(`log: ${+new Date()}: middleware length:${args.length}`,...args)
-//   }
-// ])
+pipe.addMiddleware([
+  (...args) => {
+    console.log(`log: ${+new Date()}: middleware length:${args.length}`,...args)
+  }
+])
 
 const store = pipe.create()
 
