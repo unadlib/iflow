@@ -1,8 +1,9 @@
 # iFlow
-iFlow is a simple state/action management framework.
+iFlow is a simple state/action management framework. It's a Hybrid state/action framework support mutable and immutable.
 
+### Formula
 ---
-    It's a Hybrid state/action framework support mutable and immutable.
+    action(store) => store = newStore
 
 ### Installation
 ```bash
@@ -20,7 +21,7 @@ const pipe = iFlow({
   counter: 0,
 })
 pipe.on((store) => {
-  console.log('log `store counter`: ', store.counter)
+  console.log(`log 'store counter': `, store.counter)
 })
 const store = pipe.create({counter: 1})
 store.calculate(1)
