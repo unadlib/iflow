@@ -1,19 +1,10 @@
 import iFlow from '../lib'
 
 const pipe = iFlow({
-  calculate: function(n) {
-    this.a.b.c.d = [1]
+  calculate: (self) => {
+    console.log(this,self,1)
   },
-  e: function(n) {
-    this.a.b.c.d[0] += 1
-  },
-  a: {
-    b: {
-     c: {
-       d: 1
-     }
-    }
-  }
+  a: [[]]
 })
 
 
@@ -33,8 +24,9 @@ pipe.addMiddleware([
   }
 ])
 
-const store = pipe.create({})
+const store = pipe.create({
+  a: [[1,2,3]]
+})
 
-store.calculate(1)
-store.e(1)
+store.calculate()
 
