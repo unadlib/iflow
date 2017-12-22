@@ -4,18 +4,22 @@ class Counter {
   constructor () {
     this.counter = []
   }
-  calculate (number) {
-    this.counter.push({a:1})
+  calculate (self) {
+    console.log(self)
+    // this.x = function () {
+    //   this.counter[0].push({a:1})
+    // }
   }
   a(){
-    this.counter[0].a += 100
+    this.x()
+    this.counter[0][0].a += 100
   }
 }
 
 const pipe = iFlow(new Counter())
 
 pipe.on((...args) => {
-  console.log('listen pre change store get counter: ', ...args)
+  console.log('on: ', ...args)
 })
 // pipe.addMiddleware([
 //   (...args) => {
@@ -25,7 +29,8 @@ pipe.on((...args) => {
 //     return args.splice(-1)[0] + 200
 //   }
 // ])
-const store = pipe.create()
-store.calculate(1)
-store.a(1)
+const store = pipe.create({
+  counter: [1]
+})
+store.calculate()
 
