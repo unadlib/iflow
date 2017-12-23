@@ -6,7 +6,6 @@ class Counter {
   }
   calculate (self) {
     self.cc.splice(0,1)
-    console.log(self.cc)
     // this.x = function () {
     //   this.counter[0].push({a:1})
     // }
