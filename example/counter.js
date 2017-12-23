@@ -4,19 +4,17 @@ const pipe = iFlow({
   calculate: function() {
     // self.a.push([{x:1}])
     // self.a[0][0].x += 100
-    this.a.b.c.d += 1001
+    // this.a.splice(0,1)
+    this.b = 1
 
     // setTimeout(() => {
     //   console.log(self.x())
     // })
   },
-  a: {
-    b:{
-      c: {
-        d: 100
-      }
-    }
-  }
+  e: function() {
+    delete this.b
+  },
+  a: [{}]
 })
 
 
@@ -37,14 +35,9 @@ pipe.addMiddleware([
 ])
 
 const store = pipe.create({
-  // a: {
-  //   b:{
-  //     c: {
-  //       d: 100111
-  //     }
-  //   }
-  // }
+  // a: [1,1]
 })
 
 store.calculate()
+store.e()
 

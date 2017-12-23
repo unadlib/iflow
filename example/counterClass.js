@@ -2,10 +2,11 @@ import iFlow from '../lib'
 
 class Counter {
   constructor () {
-    this.counter = []
+    this.cc = []
   }
   calculate (self) {
-    console.log(self)
+    self.cc.splice(0,1)
+    console.log(self.cc)
     // this.x = function () {
     //   this.counter[0].push({a:1})
     // }
@@ -18,19 +19,24 @@ class Counter {
 
 const pipe = iFlow(new Counter())
 
-pipe.on((...args) => {
-  console.log('on: ', ...args)
-})
-// pipe.addMiddleware([
-//   (...args) => {
-//     return args.splice(-1)[0] + 100
-//   },
-//   (...args) => {
-//     return args.splice(-1)[0] + 200
-//   }
-// ])
+pipe.on(
+  (...args) => {
+    console.log(`log: ${+new Date()}: on length: ${args.length}`, ...args)
+  }
+)
+pipe.subscribe(
+  (...args) => {
+    console.log(`log: ${+new Date()}: subscribe length: ${args.length}`, ...args)
+  }
+)
+pipe.addMiddleware([
+  (...args) => {
+    console.log(`log: ${+new Date()}: middleware length:${args.length}`,...args)
+  }
+])
+
 const store = pipe.create({
-  counter: [1]
+  cc: [1]
 })
 store.calculate()
 
