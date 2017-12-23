@@ -116,11 +116,11 @@ const pipe = iFlow({
 //     // console.log(`log: ${+new Date()}: subscribe length: ${args.length}`, args)
 //   }
 // )
-pipe.addMiddleware([
-  (...args) => {
-    console.log(`log: ${+new Date()}: middleware length:${args.length}`,args)
-  }
-])
+// pipe.addMiddleware([
+//   (...args) => {
+//     console.log(`log: ${+new Date()}: middleware length:${args.length}`,args)
+//   }
+// ])
 
 const store = pipe.create({
   a: [{a:100}]
