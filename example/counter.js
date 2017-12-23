@@ -5,7 +5,7 @@ const pipe = iFlow({
     // self.a.push([{x:1}])
     // self.a[0][0].x += 100
     // this.a.splice(0,1)
-    this.b = 1
+    this.b = {e:1}
 
     // setTimeout(() => {
     //   console.log(self.x())
@@ -20,17 +20,17 @@ const pipe = iFlow({
 
 pipe.on(
   (...args) => {
-    console.log(`log: ${+new Date()}: on length: ${args.length}`, ...args)
+    console.log(`log: ${+new Date()}: on length: ${args.length}`, args)
   }
 )
 pipe.subscribe(
   (...args) => {
-    console.log(`log: ${+new Date()}: subscribe length: ${args.length}`, ...args)
+    // console.log(`log: ${+new Date()}: subscribe length: ${args.length}`, args)
   }
 )
 pipe.addMiddleware([
   (...args) => {
-    console.log(`log: ${+new Date()}: middleware length:${args.length}`,...args)
+    console.log(`log: ${+new Date()}: middleware length:${args.length}`,args.slice(-1)[0].mode)
   }
 ])
 
