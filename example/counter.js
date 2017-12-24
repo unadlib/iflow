@@ -4,8 +4,7 @@ const pipe = iFlow({
   calculate: function() {
     // self.a.push([{x:1}])
     // self.a[0][0].x += 100
-    console.log(this.a[0])
-    this.e = (self) => self.a[0].a += 100
+    // this.e = (self) => self.a[0].a += 100
     this.e()
     // this.a[0].a += 100
     // this.b = {e:1}
@@ -68,7 +67,7 @@ pipe.middleware([
     initialize: (value) => {
       return {
         ...value,
-        a: [{a:value.a[0].a+1}]
+        a: [{a:value.a[0].a+1},1]
       }
     },
     start: (...args) => {
@@ -105,7 +104,6 @@ pipe.middleware([
 const store = pipe.create({
   a: [{a:100}]
 })
-
-store.calculate()
+// store.e()
 // store.e()
 
