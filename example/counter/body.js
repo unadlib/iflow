@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import flow from 'react-iflow'
 import store from './store'
 
-@flow(store)
-export default class Body extends Component {
+class Body extends Component {
   render () {
     return (
       <div>
@@ -14,3 +13,5 @@ export default class Body extends Component {
     )
   }
 }
+
+export default flow(store)(Body)
