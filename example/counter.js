@@ -1,4 +1,4 @@
-import iFlow from '../lib'
+import iFlow from '../build'
 
 const pipe = iFlow({
   calculate: function() {
@@ -71,16 +71,16 @@ pipe.middleware([
       }
     },
     start: (...args) => {
-      console.log(`log: ${+new Date()}: start length: ${args.length}`, ...args)
+      // console.log(`log: ${+new Date()}: start length: ${args.length}`, ...args)
     },
     before: (...args) => {
-      console.log(`log: ${+new Date()}: before length: ${args.length}`, ...args)
+      // console.log(`log: ${+new Date()}: before length: ${args.length}`, ...args)
     },
     after: (...args) => {
-      console.log(`log: ${+new Date()}: after length: ${args.length}`, ...args)
+      // console.log(`log: ${+new Date()}: after length: ${args.length}`, ...args)
     },
     end: (...args) => {
-      console.log(`log: ${+new Date()}: end length: ${args.length}`, ...args)
+      // console.log(`log: ${+new Date()}: end length: ${args.length}`, ...args)
     },
   }
 ])
@@ -104,6 +104,7 @@ pipe.middleware([
 const store = pipe.create({
   a: [{a:100}]
 })
+console.log(store.a[0].a)
 // store.e()
 // store.e()
 

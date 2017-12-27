@@ -1,11 +1,15 @@
 {
   "name": "iflow",
-  "version": "0.0.2",
+  "version": "1.0.0-alpha.1",
   "description": "Hybrid state & action framework.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel lib/ -d build/"
+    "test": "jest",
+    "test:cover": "jest --coverage",
+    "test:cover:travis": "npm run test:cover && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "build": "rollup -c",
+    "release": "babel lib -d build"
   },
   "repository": {
     "type": "git",
@@ -22,7 +26,15 @@
   "homepage": "https://github.com/unadlib/iflow#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1"
+    "babel-preset-stage-0": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "jest": "^22.0.4",
+    "rollup": "^0.53.0",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "uglify-es": "^3.3.2"
   }
 }
