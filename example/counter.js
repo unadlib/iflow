@@ -13,9 +13,7 @@ const pipe = iFlow({
     //   console.log(self.x())
     // })
   },
-  // e: function() {
-  //   delete this.b
-  // },
+
   a: []
 })
 

@@ -8,7 +8,7 @@ iFlow is a simple state/action management framework. It's a Hybrid state/action 
 
 ### Contents
 * Features
-* Installation
+* Install
 * Getting started
 * The Gist
 * Examples
@@ -25,7 +25,7 @@ iFlow is a simple state/action management framework. It's a Hybrid state/action 
 
 ### Getting started
 
-### Installation
+### Install
 ```bash
 yarn add iflow
 //or
