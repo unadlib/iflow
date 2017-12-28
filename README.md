@@ -62,6 +62,7 @@ store.calculate(1)
 ```
 
 ### Examples
+[React with iFlow examples](https://github.com/unadlib/iflow/tree/master/examples)
 ### API Reference
 * iFlow
 >It can handle data structures other than function.
