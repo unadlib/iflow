@@ -1,7 +1,7 @@
 {
   "name": "iflow",
   "version": "1.0.0-alpha.2",
-  "description": "Hybrid state & action framework.",
+  "description": "Most concise, freestyle and extensible state framework.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "scripts": {

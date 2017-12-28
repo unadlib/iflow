@@ -1,7 +1,8 @@
 # iFlow
-iFlow is a simple and free style state management framework. It's dynamic, you can discretionarily use it to modify delete and add the state/action. It completely supports plain class and function based on mutable, be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for their connector.
+iFlow is a most concise, freestyle and extensible state framework. It's dynamic, you can discretionarily use it to modify delete and add the state/action. It completely supports plain class and function based on mutable, be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for their connector.
 
 ### What's iFlow?
+iFlow is mutable, include state and action.
 
 ---
     action(store) => store = newStore
@@ -20,12 +21,12 @@ iFlow is a simple and free style state management framework. It's dynamic, you c
 * [Change Log](https://github.com/unadlib/iflow#change-log)
 
 ### Features
-* **Plain class and function** - Free style of the state structure for personal preference
-* **State tree compose** - State tree be easy to state share the operating
-* **Dynamic state and actions hot-swapping** - Both the temporary state and the action can be directly and freely deleted and added
-* **Async function and others type function** - Async actions will be composed async process or invoked internal.
-* **Powerful middleware** - Middleware can handle the store any change event.
-* **Least possible boilerplate** - Boilerplate code limits the possibility of multiple builds of state management.
+* **🎯Plain class and function** - Free style of the state structure for personal preference
+* **🏬State tree compose** - State tree be easy to state share the operating
+* **🎡Dynamic state and actions hot-swapping** - Both the temporary state and the action can be directly and freely deleted and added
+* **🚦Async function and others type function** - Async actions will be composed async process or invoked internal.
+* **🚀Powerful middleware** - Middleware can handle the store any change event.
+* **⛱Least possible boilerplate** - Boilerplate code limits the possibility of multiple builds of state management.
 
 ### Getting started
 * State
