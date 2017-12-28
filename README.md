@@ -62,6 +62,10 @@ store.calculate(1)
 ```
 
 ### Examples
+>Show Examples
+```bash
+yarn && yarn start
+```
 * [Counter](https://github.com/unadlib/iflow/tree/master/examples/counter)
 * [Todo](https://github.com/unadlib/iflow/tree/master/examples/todo)
 ### API Reference
