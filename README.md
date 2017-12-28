@@ -21,9 +21,9 @@ iFlow is mutable, include state and action.
 * [Change Log](https://github.com/unadlib/iflow#change-log)
 
 ### Features
-* **🎯Plain class and function** - Free style of the state structure for personal preference
-* **🏬State tree compose** - State tree be easy to state share the operating
-* **🎡Dynamic state and actions hot-swapping** - Both the temporary state and the action can be directly and freely deleted and added
+* **🎯Plain class and function** - Free style of the store structure for personal preference
+* **🏬Store tree compose** - Store tree be easy to store share the operating
+* **🎡Dynamic and hot-swapping** - Both the temporary state and the action can be directly and freely deleted and added
 * **🚦Async function and others type function** - Async actions will be composed async process or invoked internal.
 * **🚀Powerful middleware** - Middleware can handle the store any change event.
 * **⛱Least possible boilerplate** - Boilerplate code limits the possibility of multiple builds of state management.
