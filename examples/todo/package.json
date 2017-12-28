@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "alias-webpack-plugin": "^1.0.6",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
@@ -18,7 +19,9 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
+    "iflow": "^1.0.0-alpha.3",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-iflow": "^1.0.0-alpha.6"
   }
 }
