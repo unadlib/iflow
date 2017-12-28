@@ -41,7 +41,7 @@ yarn add iflow
 npm install --save iflow
 ```
 If you want to use it completely, you may also need a connector for your Web view framework. For example, you used React and iFlow, and you should use `React iFlow` for the connector.
-### The Gist
+### Gist
 ```javascript
 import iFlow from 'iflow'
 
