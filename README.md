@@ -64,7 +64,7 @@ store.calculate(1)
 ### Examples
 ### API Reference
 * iFlow
-It can handle data structures other than function.
+>It can handle data structures other than function.
 ```javascript
 import iFlow from 'iflow'
 const pipe = iFlow({})
@@ -80,7 +80,7 @@ const pipe = iFlow({})
 //const pipe = iFlow([])
 ```
 * middleware
-The Middleware API will Listen to the store any change, and modify it.
+>The Middleware API will Listen to the store any change, and modify it.
 ```javascript
 pipe.middleware({
   initialize: (...args) => {},
@@ -92,7 +92,7 @@ pipe.middleware({
 ```
 
 * create
-Every pipe will be created with initial value or without.
+>Every pipe will be created with initial value or without.
 ```javascript
 const store = pipe.create({
   counter: 100,
