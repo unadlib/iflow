@@ -1,5 +1,5 @@
 # iFlow
-iFlow is a simple and free style state management framework. It's dynamic, you can discretionarily use it to modify delete and add the state/action. It completely supports plain class and function based on mutable, be easy to OOP.
+iFlow is a simple and free style state management framework. It's dynamic, you can discretionarily use it to modify delete and add the state/action. It completely supports plain class and function based on mutable, be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for their connector.
 
 ### What's iFlow?
 
