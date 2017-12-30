@@ -7,7 +7,7 @@ class Tab extends Component {
     return (
       <div>
         <p>
-          total:{list.filter(filter).length}
+          total:{list.filter((i) => filter(i, tabStatus)).length}
         </p>
         {
           this.props.store.tabs.map((tab, key) => (

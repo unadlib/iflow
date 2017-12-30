@@ -3,11 +3,11 @@ import flow from 'react-iflow'
 
 class List extends Component {
   render () {
-    const {list, filter, toggleTodo} = this.props.store
+    const {list, filter, toggleTodo, tabStatus} = this.props.store
     return (
       <ul>
         {
-          list.filter(filter).map(({id, completed, text}) =>
+          list.filter((i) => filter(i, tabStatus)).map(({id, completed, text}) =>
             <li
               key={id}
               style={{textDecoration: completed ? 'line-through' : 'none'}}

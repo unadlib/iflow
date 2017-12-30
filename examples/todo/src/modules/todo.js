@@ -38,10 +38,10 @@ export default class Todo {
     }
   }
 
-  filter ({completed}) {
-    if (this.tabStatus === this.tabs[0]) {
+  filter ({completed}, tabStatus) {
+    if (tabStatus === this.tabs[0]) {
       return true
-    } else if (this.tabStatus === this.tabs[1]) {
+    } else if (tabStatus === this.tabs[1]) {
       return !completed
     } else {
       return !!completed
