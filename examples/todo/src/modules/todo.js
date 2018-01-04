@@ -38,14 +38,16 @@ export default class Todo {
     }
   }
 
-  filter ({completed}, tabStatus) {
-    if (tabStatus === this.tabs[0]) {
-      return true
-    } else if (tabStatus === this.tabs[1]) {
-      return !completed
-    } else {
-      return !!completed
-    }
+  get listFilter () {
+    console.log('listFilter')
+    return this.list.filter(({completed})=> {
+      if (this.tabStatus === this.tabs[0]) {
+        return true
+      } else if (this.tabStatus === this.tabs[1]) {
+        return !completed
+      } else {
+        return !!completed
+      }
+    })
   }
-
 }

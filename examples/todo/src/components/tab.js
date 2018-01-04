@@ -3,11 +3,11 @@ import flow from 'react-iflow'
 
 class Tab extends Component {
   render () {
-    const {list, filter, tabStatus, toggleTab, clearCompleted} = this.props.store
+    const {listFilter, tabStatus, toggleTab, clearCompleted} = this.props.store
     return (
       <div>
         <p>
-          total:{list.filter((i) => filter(i, tabStatus)).length}
+          total:{listFilter.length}
         </p>
         {
           this.props.store.tabs.map((tab, key) => (
