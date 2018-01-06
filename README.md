@@ -75,17 +75,32 @@ yarn && yarn start
 >It can handle data structures other than function.
 ```javascript
 import iFlow from 'iflow'
-const pipe = iFlow({})
-//class Count {
-//  constructor (){
-//    this.counter = 0
-//  }
-//  calculate(number) {
-//    this.counter += number
-//  }
-//}
-//const pipe = iFlow(new Count())
-//const pipe = iFlow([])
+
+const pipe = iFlow({
+  counter: 0,
+  calculate (number) {
+    this.counter += number
+  }
+})
+```
+```javascript
+import iFlow from 'iflow'
+
+class Count {
+  constructor () {
+    this.counter = 0
+  }
+
+  calculate (number) {
+    this.counter += number
+  }
+}
+
+const pipe = iFlow(new Count())
+```
+```javascript
+import iFlow from 'iflow'
+const pipe = iFlow([])
 ```
 * middleware
 >The Middleware API will Listen to the store any change, and modify it.
