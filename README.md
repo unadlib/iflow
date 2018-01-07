@@ -106,7 +106,7 @@ const pipe = iFlow([])
 >The Middleware API will Listen to the store any change, and modify it.
 ```javascript
 pipe.middleware({
-  initialize: (...args) => {},
+  init: (...args) => {},
   start: (...args) => {},
   before: (...args) => {},
   after: (...args) => {},
