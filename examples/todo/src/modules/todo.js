@@ -7,6 +7,11 @@ export default class Todo {
       'Active',
       'Completed'
     ]
+    this.history = [{
+      list: [],
+      tabStatus: 'All'
+    }]
+    this.index = 1
   }
 
   add (text) {
@@ -30,6 +35,31 @@ export default class Todo {
     this.tabStatus = tabStatus
   }
 
+  record (args) {
+    if ([
+        'add',
+        'toggleTodo',
+        'clearCompleted',
+        'toggleTab',
+      ].includes(args.slice(-2, -1)[0])) {
+      const {list, tabStatus} = args[0].__pipe__.getState()
+      this.history.splice(this.index, this.history.length - this.index, {
+        list,
+        tabStatus,
+      })
+      this.index += 1
+    }
+  }
+
+  doing (index) {
+    this.index += index
+    const {list, tabStatus} = this.history[this.index - 1].__pipe__.getState()
+    this.__pipe__.setState({
+      list,
+      tabStatus
+    })
+  }
+
   onSubmit (e, input) {
     e.preventDefault()
     if (!!input.value.trim()) {
@@ -39,8 +69,7 @@ export default class Todo {
   }
 
   get listFilter () {
-    console.log('listFilter')
-    return this.list.filter(({completed})=> {
+    return this.list.filter(({completed}) => {
       if (this.tabStatus === this.tabs[0]) {
         return true
       } else if (this.tabStatus === this.tabs[1]) {
@@ -49,5 +78,13 @@ export default class Todo {
         return !!completed
       }
     })
+  }
+
+  get redoDisable () {
+    return this.history.length === this.index
+  }
+
+  get undoDisable () {
+    return this.index === 1
   }
 }

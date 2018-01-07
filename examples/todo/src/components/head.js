@@ -4,10 +4,14 @@ import flow from 'react-iflow'
 class Head extends Component {
   render () {
     return (
-      <form onSubmit={e => this.props.store.onSubmit(e, this.refs.input)}>
-        <input ref={'input'}/>
-        <button type="submit">Add</button>
-      </form>
+      <div>
+        <form onSubmit={e => this.props.store.onSubmit(e, this.refs.input)}>
+          <input ref={'input'}/>
+          <button type="submit">Add</button>
+        </form>
+        <button onClick={() => this.props.store.doing(-1)} disabled={this.props.store.undoDisable}>undo</button>
+        <button onClick={() => this.props.store.doing(1)} disabled={this.props.store.redoDisable}>redo</button>
+      </div>
     )
   }
 }
