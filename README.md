@@ -125,14 +125,14 @@ const store = pipe.create({
 * batch
 >It will batch to update the states
 ```javascript
-const store = iFlow({
+const pipe = iFlow({
   action: batch(function(){
     //state changes
   })
 })
 ```
 ```javascript
-const store = iFlow({
+const pipe = iFlow({
   action: function(){
     batch(()=>{
       //batch code
@@ -147,7 +147,7 @@ class Pipe {
     //state changes
   }
 }
-const store = iFlow(new Pipe())
+const pipe = iFlow(new Pipe())
 ```
 ### Documentation
 TO EDIT
