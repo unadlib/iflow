@@ -7,7 +7,7 @@ iFlow is mutable, include state and action.
 ---
     action(store) => store = newStore
 
-![Data Flow](https://github.com/unadlib/iflow/blob/master/doc/assets/flowChart.png)
+![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/doc/assets/flowChart.png)
 
 ### Contents
 * [Features](https://github.com/unadlib/iflow#features)
