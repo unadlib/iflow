@@ -96,7 +96,7 @@ const pipe = iFlow(new Count())
 import iFlow from 'iflow'
 const pipe = iFlow([])
 ```
-* middleware
+* middleware()
 >The Middleware API will Listen to the store any change, and modify it.
 ```javascript
 pipe.middleware({
@@ -108,7 +108,7 @@ pipe.middleware({
 })
 ```
 
-* create
+* create()
 >Every pipe will be created with initial value or without.
 ```javascript
 const store = pipe.create({
@@ -116,9 +116,9 @@ const store = pipe.create({
 })
 ```
 
-* batch
+* batch(action,...paths) / @batch(...paths)
 >It will batch to update the states
->batch(...paths)
+
 >No pass the paths arguments, then it will update the pipe store.
 
 ```javascript
