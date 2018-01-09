@@ -35,17 +35,20 @@ export default class Todo {
     this.tabStatus = tabStatus
   }
 
-  record (args) {
+  record (actionName) {
     if ([
         'add',
         'toggleTodo',
         'clearCompleted',
-        'toggleTab',
-      ].includes(args.slice(-2, -1)[0])) {
-      const {list, tabStatus} = args[0].__pipe__.getState()
+        // 'toggleTab',
+      ].includes(actionName)) {
+      const {
+        list,
+        // tabStatus
+      } = this['__pipe__'].getState()
       this.history.splice(this.index, this.history.length - this.index, {
         list,
-        tabStatus,
+        // tabStatus,
       })
       this.index += 1
     }
@@ -53,10 +56,13 @@ export default class Todo {
 
   doing (index) {
     this.index += index
-    const {list, tabStatus} = this.history[this.index - 1].__pipe__.getState()
-    this.__pipe__.setState({
+    const {
       list,
-      tabStatus
+      // tabStatus
+    } = this.history[this.index - 1]['__pipe__'].getState()
+    this['__pipe__'].setState({
+      list,
+      // tabStatus
     })
   }
 
