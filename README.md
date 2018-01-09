@@ -49,7 +49,7 @@ const pipe = iFlow({
   counter: 0,
 })
 
-pipe.on((store) => {
+pipe.addObserver((store) => {
   console.log(`log '[ store counter ]': `, store.counter)
 })
 
