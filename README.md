@@ -118,10 +118,15 @@ const store = pipe.create({
 
 * batch
 >It will batch to update the states
+>batch(...paths)
+>No pass the paths arguments, then it will update the pipe store.
+
 ```javascript
 const pipe = iFlow({
   action: batch(function(){
     //state changes
+    this.foo.push(1)
+    this.foobar.bar.push(2)
   })
 })
 ```
@@ -129,16 +134,20 @@ const pipe = iFlow({
 const pipe = iFlow({
   action: function(){
     batch(()=>{
-      //batch code
-    }).call(this)
+      //state changes
+      this.foo.push(1)
+      this.foobar.bar.push(2)
+    }, 'foo', ['foobar','bar']).call(this)
   }
 })
 ```
 ```javascript
 class Pipe {
-  @batch()
+  @batch('foo', ['foobar','bar'])
   action(){
     //state changes
+    this.foo.push(1)
+    this.foobar.bar.push(2)
   }
 }
 const pipe = iFlow(new Pipe())
