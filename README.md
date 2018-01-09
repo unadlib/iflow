@@ -1,13 +1,12 @@
 # iFlow
-iFlow is a most concise, freestyle and extensible state management framework. It's dynamic, you can discretionarily use it to add, delete and reassign the state/action. It completely supports plain class and function based on mutable, be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for their connector.
+iFlow is a concise & powerful state management framework. It's dynamic and extensible, you can directly use it to add, delete and reassign the state/action. It completely supports plain class and function based on **mutable data structures**, be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
 
-### What's iFlow?
-iFlow is mutable, include state and action.
-
----
-    action(store) => store = newStore
-
-![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/doc/assets/flowChart.png)
+### Features
+* **🎯Plain class and function** - Concise, Freestyle of the store structure for personal preference.
+* **🏬Store tree compose** - Store tree be easy to store share the operating.
+* **⚡️Dynamic and hot-swapping** - Both the temporary state and action can be directly and freely changed.
+* **💥Async function and others type functions** - Any actions will be composed or invoked internal.
+* **🚀Powerful middleware** - Middleware can handle the store any change event.
 
 ### Contents
 * [Features](https://github.com/unadlib/iflow#features)
@@ -19,16 +18,11 @@ iFlow is mutable, include state and action.
 * [Gist](https://github.com/unadlib/iflow#gist)
 * [Examples](https://github.com/unadlib/iflow#examples)
 * [API Reference](https://github.com/unadlib/iflow#api-reference)
+* [How it works](https://github.com/unadlib/iflow#how-it-works)
 * [Documentation](https://github.com/unadlib/iflow#documentation)
+* [Benefits](https://github.com/unadlib/iflow#benefits)
+* [Limitations and pitfalls](https://github.com/unadlib/iflow#limitations-and-pitfalls)
 * [Change Log](https://github.com/unadlib/iflow#change-log)
-
-### Features
-* **🎯Plain class and function** - Freestyle of the store structure for personal preference.
-* **🏬Store tree compose** - Store tree be easy to store share the operating.
-* **🎡Dynamic and hot-swapping** - Both the temporary state and action can be directly and freely changed.
-* **🚦Async function and others type functions** - Any actions will be composed or invoked internal.
-* **🚀Powerful middleware** - Middleware can handle the store any change event.
-* **⛱Least possible boilerplate** - Boilerplate code limits the possibility of multiple builds of state management.
 
 ### Getting started
 * State
@@ -149,7 +143,14 @@ class Pipe {
 }
 const pipe = iFlow(new Pipe())
 ```
+
+### How it works
+![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/doc/assets/flowChart.png)
 ### Documentation
+TO EDIT
+### Benefits
+TO EDIT
+### Limitations and pitfalls
 TO EDIT
 ### Change Log
 TO EDIT

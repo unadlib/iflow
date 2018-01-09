@@ -1,7 +1,7 @@
 {
   "name": "iflow",
-  "version": "1.0.0-alpha.17",
-  "description": "Most concise, freestyle and extensible state management framework.",
+  "version": "1.0.0-alpha.18",
+  "description": "Concise & powerful state management framework for Javascript.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "scripts": {

@@ -1,10 +1,10 @@
 /* global toString */
 
-const unproxyTypes = [
+const unProxyTypes = [
   '[object Set]',
   '[object WeakSet]',
   '[object Map]',
   '[object WeakMap]'
 ]
 
-export default (target) => unproxyTypes.includes(toString.call(target))
+export default (target) => unProxyTypes.includes(toString.call(target))

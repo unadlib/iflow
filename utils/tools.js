@@ -1,3 +1,4 @@
+/* global toString */
 const INFINITY = 1 / 0
 
 export const isSymbol = (value) => {
