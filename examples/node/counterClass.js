@@ -1,68 +1,22 @@
-import iFlow from '../lib'
+import iFlow from '../../lib'
 
-class Counter {
-  constructor () {
-    this.a = []
-  }
-  calculate () {
-    console.log(this.a)
-    // this.a.splice(0,1)
-    // this.x = function () {
-    //   this.counter[0].push({a:1})
-    // }
+const sleep = (t = 1000) => new Promise(r => setTimeout(r, t))
+
+class Count {
+  counter = 0
+  async calculate (number) {
+    this.counter += number
+    await sleep()
+    await this.calculate(number)
   }
 }
 
-const pipe = iFlow(new Counter())
+const pipe = iFlow(new Count())
 
-pipe.middleware([
-  {
-    initialize: (value) => {
-      return {
-        ...value,
-        a: [{a:value.a[0].a+1}]
-      }
-    },
-    start: (...args) => {
-      // console.log(`log: ${+new Date()}: start length: ${args.length}`, ...args)
-    },
-    before: (...args) => {
-      // console.log(`log: ${+new Date()}: before length: ${args.length}`, ...args)
-      return 191
-    },
-    after: (...args) => {
-      // console.log(`log: ${+new Date()}: after length: ${args.length}`, ...args)
-    },
-    end: (...args) => {
-      // console.log(`log: ${+new Date()}: end length: ${args.length}`, ...args)
-    },
-  },
-  // {
-  //   initialize: (value) => {
-  //     return {
-  //       ...value,
-  //       a: [{a:value.a[0].a+111}]
-  //     }
-  //   },
-  //   start: (...args) => {
-  //     console.log(`log: ${+new Date()}: start length: ${args.length}`, ...args)
-  //   },
-  //   before: (...args) => {
-  //     console.log(`log: ${+new Date()}: before length: ${args.length}`, ...args)
-  //     return 10000
-  //   },
-  //   after: (...args) => {
-  //     console.log(`log: ${+new Date()}: after length: ${args.length}`, ...args)
-  //   },
-  //   end: (...args) => {
-  //     console.log(`log: ${+new Date()}: end length: ${args.length}`, ...args)
-  //   },
-  // }
-])
-
-const store = pipe.create({
-  a: [{a:100}]
+pipe.addObserver((store) => {
+  console.log(store.counter)
 })
-console.log(store.a[0].a)
-// store.calculate()
+
+const store = pipe.create()
+store.calculate(1)
 
