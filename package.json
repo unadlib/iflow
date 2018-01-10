@@ -1,6 +1,6 @@
 {
   "name": "iflow",
-  "version": "1.0.0-alpha.19",
+  "version": "1.0.0-alpha.20",
   "description": "Concise & powerful state management framework for Javascript.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -19,7 +19,7 @@
     "name": "unadlib",
     "email": "unadlib@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/unadlib/iflow/issues"
   },
