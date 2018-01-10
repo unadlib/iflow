@@ -1,7 +1,7 @@
 # iFlow
 iFlow is a concise & powerful state management framework.
 
-It's dynamic and extensible, you can directly use it to add, delete and reassign the state/action. It completely supports plain class and function based on **mutable data structures**, be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
+It's dynamic and extensible, you can directly use it to add, delete and reassign the state/action. It completely supports plain class and function based on **mutable data structures**, and be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
 
 ### Features
 * **🎯Plain class and function** - Concise, Freestyle of the store structure for personal preference.
@@ -12,7 +12,7 @@ It's dynamic and extensible, you can directly use it to add, delete and reassign
 
 ### Contents
 * [Features](https://github.com/unadlib/iflow#features)
-* [Install](https://github.com/unadlib/iflow#install)
+* [Installation](https://github.com/unadlib/iflow#Installation)
 * [Getting started](https://github.com/unadlib/iflow#getting-started)
     * State
     * Action
@@ -30,16 +30,16 @@ It's dynamic and extensible, you can directly use it to add, delete and reassign
 * State
 > support all ECMAScript2015 data types except function, and state can be defined or assigned later.
 * Action
-> support all type functions, and dynamic insert action or remove it.If you use `function`, its function's `this` is the current self pipe store. If you ues arrow function, the last argument is the current self pipe store.
+> support all type functions, and dynamic insert action or remove it.If you use `function`, its function's `this` is the current self pipe store. If you ues `arrow function`, the last argument is the current `self` pipe store.
 * Data flow
 > View trigger action, and run state's setter paths/value, then its setter paths was matched to the components's getter paths, finally decide whether to update
-### Install
+### Installation
 ```bash
 yarn add iflow
 //or
 npm install --save iflow
 ```
-If you want to use it completely, you may also need a connector for your Web view framework. For example, you used React and iFlow, and you should use `React iFlow` for the connector.
+If you want to use it completely, you may also need a connector for your Web view framework. For example, you used React and iFlow, and you should use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
 ### Gist
 ```javascript
 import iFlow from 'iflow'
@@ -60,10 +60,6 @@ store.calculate(1)
 ```
 
 ### Examples
->Show Examples
-```bash
-yarn && yarn start
-```
 * [Counter](https://github.com/unadlib/iflow/tree/master/examples/counter)
 * [Todo](https://github.com/unadlib/iflow/tree/master/examples/todo)
 ### API Reference
