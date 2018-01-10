@@ -1,6 +1,10 @@
 # iFlow
 iFlow is a concise & powerful state management framework.
 
+[![Travis](https://img.shields.io/travis/unadlib/iflow.svg)](https://travis-ci.org/unadlib/iflow)
+[![Coverage Status](https://coveralls.io/repos/github/unadlib/iflow/badge.svg?branch=master)](https://coveralls.io/github/unadlib/iflow?branch=master)
+[![npm](https://img.shields.io/npm/v/iflow.svg)](https://www.npmjs.com/package/iflow)
+
 It's dynamic and extensible, you can directly use it to add, delete and reassign the state/action. It completely supports plain class and function based on **mutable data structures**, and be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
 
 ### Features
