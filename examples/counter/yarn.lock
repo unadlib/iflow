@@ -2108,9 +2108,9 @@ ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
-iflow@^1.0.0-alpha.23:
-  version "1.0.0-alpha.23"
-  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.23.tgz#ee4cb9c1fa1af14093bf9d603cdfc9dfa1450097"
+iflow@^1.0.0-alpha.24:
+  version "1.0.0-alpha.24"
+  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.24.tgz#e2fd3173967a9835eb3862c3e1d3fee6d4e69a6b"
 
 import-local@^0.1.1:
   version "0.1.1"
