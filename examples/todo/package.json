@@ -24,6 +24,6 @@
     "iflow": "^1.0.0-alpha.21",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-iflow": "^1.0.0-alpha.14"
+    "react-iflow": "^1.0.0-alpha.15"
   }
 }

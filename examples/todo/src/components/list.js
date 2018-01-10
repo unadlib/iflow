@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import flow from 'react-iflow'
+import { connect } from 'react-iflow'
 
 class List extends Component {
   render () {
@@ -21,4 +21,4 @@ class List extends Component {
   }
 }
 
-export default flow()(List)
+export default connect(List)

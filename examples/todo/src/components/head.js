@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import flow from 'react-iflow'
+import { connect } from 'react-iflow'
 
 class Head extends Component {
   render () {
@@ -16,4 +16,4 @@ class Head extends Component {
   }
 }
 
-export default flow()(Head)
+export default connect(Head)

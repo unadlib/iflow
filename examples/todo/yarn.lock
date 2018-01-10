@@ -3114,9 +3114,9 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-iflow@^1.0.0-alpha.14:
-  version "1.0.0-alpha.14"
-  resolved "https://registry.yarnpkg.com/react-iflow/-/react-iflow-1.0.0-alpha.14.tgz#39cfecc0f127e5679292f9b0c8f225def6320650"
+react-iflow@^1.0.0-alpha.15:
+  version "1.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/react-iflow/-/react-iflow-1.0.0-alpha.15.tgz#4a3fbe389bee6a34657b7d76874d99045190e704"
   dependencies:
     prop-types "^15.6.0"
     react "^16.2.0"
