@@ -9,7 +9,12 @@
     "test:cover": "jest --coverage",
     "test:cover:travis": "npm run test:cover && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "build": "rollup -c",
-    "release": "babel lib -d build"
+    "release": "babel lib -d build",
+    "docs:prepare": "gitbook install",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:clean": "rimraf _book",
+    "docs:build": "yarn docs:prepare && gitbook build -g unadlib/iflow && cp assets/favicon.ico _book/gitbook/images",
+    "docs:publish": "yarn docs:clean && yarn docs:build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:unadlib/iflow gh-pages --force"
   },
   "repository": {
     "type": "git",
@@ -31,7 +36,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
     "coveralls": "^3.0.0",
+    "gitbook-cli": "^2.3.2",
     "jest": "^22.0.4",
+    "rimraf": "^2.6.2",
     "rollup": "^0.53.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-node-resolve": "^3.0.0",
