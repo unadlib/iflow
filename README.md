@@ -65,7 +65,10 @@ store.calculate(1)
 
 ### Examples
 * [Counter](https://github.com/unadlib/iflow/tree/master/examples/counter)
-* [Todo](https://github.com/unadlib/iflow/tree/master/examples/todo)
+* [Counter](https://jsfiddle.net/unadlib/03ukqj5L/)(Online)
+* [TODO](https://github.com/unadlib/iflow/tree/master/examples/todo)
+* [TODO](https://jsfiddle.net/unadlib/6wabhdqp/)(Online)
+
 ### API Reference
 * iFlow
 >It can handle data structures other than function.
