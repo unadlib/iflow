@@ -9,9 +9,10 @@ export default {
   input: 'lib/index.js',
   output: {
     file: `dist/index.js`,
-    format: 'es',
+    format: 'umd',
     name: pgk.name,
-    sourcemap: true
+    sourcemap: true,
+    exports: 'named'
   },
   plugins: [
     resolve(),
