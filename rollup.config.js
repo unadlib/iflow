@@ -10,7 +10,7 @@ export default {
   output: {
     file: `dist/index.js`,
     format: 'umd',
-    name: 'iFlow',
+    name: pgk.name,
     sourcemap: true,
     exports: 'named'
   },

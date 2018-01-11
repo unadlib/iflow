@@ -1,6 +1,6 @@
 {
   "name": "iflow",
-  "version": "1.0.0-alpha.26",
+  "version": "1.0.0-alpha.27",
   "description": "Concise & powerful state management framework for Javascript.",
   "main": "dist/index.js",
   "module": "dist/index.js",
