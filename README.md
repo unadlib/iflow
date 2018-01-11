@@ -157,7 +157,7 @@ const pipe = iFlow(new Pipe())
 ```
 
 ### How it works
-![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/doc/assets/flowChart.png)
+![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/assets/flowChart.png)
 ### Documentation
 TO EDIT
 ### Benefits
