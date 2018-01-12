@@ -1,4 +1,4 @@
-# iFlow
+# [iFlow](http://iflow.js.org)
 iFlow is a concise & powerful state management framework.
 
 [![Travis](https://img.shields.io/travis/unadlib/iflow.svg)](https://travis-ci.org/unadlib/iflow)
