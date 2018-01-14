@@ -151,7 +151,7 @@ pipe.middleware({
 
 * The middleware tables are as follows:
 
-| Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
+| APIs    | Direct API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
 | init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized                |
 | start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward |
