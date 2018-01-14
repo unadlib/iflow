@@ -62,5 +62,3 @@ bundle.js
 dist
 build
 _book
-cjs
-es
