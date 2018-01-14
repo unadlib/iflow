@@ -263,7 +263,7 @@ Currently known unsupported types are: `Set` / `WeakSet` / `Map` / `WeakMap`, an
 ### Support and compatibility
 
 | Browsers          |  Chrome    | IE    | Edge  | FireFox  | Safari  | Opera   | Node    |
-| :---------------- | :--------: | :---: | :---: | :------: | :-----: | :-----: |-------: |
+| :---------------- | :--------: | :---: | :---: | :------: | :-----: | :-----: | :------: |
 | Supported         | ✅         |  ❌   |  ✅    |  ✅      |  ✅     |  ✅     |  ✅     |
 | Supported version |   49+      |  -    |  12+  |  18+     |  10+    |  36+    |  6.4.0+ |
 
