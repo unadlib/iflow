@@ -1,4 +1,4 @@
-# [iFlow](http://iflow.js.org)
+# <a href='http://iflow.js.org'><img src='https://raw.githubusercontent.com/unadlib/iflow/master/assets/logo.png' height='60' alt='iFlow Logo' aria-label='iflow.js.org' /></a>
 iFlow is a concise & powerful state management framework.
 
 [![Travis](https://img.shields.io/travis/unadlib/iflow.svg)](https://travis-ci.org/unadlib/iflow)
