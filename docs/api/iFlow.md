@@ -1,20 +1,20 @@
 # `iFlow` method
 
-* Description
+### Description
 `iFlow` is the core method of iFlow, which transforms a state & action mix into a pipe and pipe, an instance of pipe that contains multiple iFlow built-in prototype chain methods.
 
-* Usage
+### Usage
 ```javascript
 iFlow([stateAndAction])
 ```
 
-* Arguments
+### Arguments
 stateAndAction(Object/Array/Function): structure requiring pipe instantiation
 
-* Returned value
+### Returned value
 (*): returns the instantiated pipe
 
-* Examples
+### Examples
 ```javascript
 import iFlow from 'iflow'
 const pipe0 = iFlow({

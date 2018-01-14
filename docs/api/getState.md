@@ -1,22 +1,22 @@
 # `getState` method
 
-* Description
+### Description
 `getState` for pipe to get the status tree of the current store
  
 
 
-* Usage
+### Usage
 ```javascript
 getState()
 ```
 
-* Arguments
+### Arguments
 (*): none
 
-* Returned value
+### Returned value
 (Array/Object): returns the value of the path that needs to be taken
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   calculate: external(async function (number) {

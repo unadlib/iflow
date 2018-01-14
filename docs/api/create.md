@@ -1,6 +1,6 @@
 # `create` method
 
-* Description
+### Description
 `create` for pipe initialization and get store.
  
 
@@ -9,18 +9,18 @@
 Initializing the middleware will affect the initialization assignment of `create`, whichever is the last initialization middleware with the return value, and if not, the initialization value of the Create pass parameter.
 
 
-* Usage
+### Usage
 ```javascript
 create(initialValue)
 ```
 
-* Arguments
+### Arguments
 initialValue (*): pipe initialized value
 
-* Returned value
+### Returned value
 (Array/Object): returns the store after pipe initialization
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   calculate (number) {

@@ -1,25 +1,25 @@
 # `batch` method
 
-* Description
+### Description
 `batch` is used to bulk update changes to the state value. If paths is not passed, the current store node will be updated, and if there is a pass paths, then paths will be updated.
  
 ⚠️**Decorator usage that supports class attributes**
 
-* Usage
+### Usage
 ```javascript
 batch(action)
 batch(action,[paths])
 @batch([paths])
 ```
 
-* Arguments
+### Arguments
 action (function): action function
 paths (Array = []): batch update state path
 
-* Returned value
+### Returned value
 (Promise): resolved value is the return value of the action
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   calculate: batch(function (number) {

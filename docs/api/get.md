@@ -1,21 +1,21 @@
 # `get` method
 
-* Description
+### Description
 `get` is used to quickly obtain the corresponding path value under the current node in pipe via path
  
 
-* Usage
+### Usage
 ```javascript
 get([path])
 ```
 
-* Arguments
+### Arguments
 path(String/Array): path that needs to be evaluated
 
-* Returned value
+### Returned value
 (*): returns the value of the path that needs to be taken
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   calculate: external(async function (number) {

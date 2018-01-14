@@ -36,7 +36,7 @@ connect(CustomComponent)
 import { Provider } from 'react-iflow'
 ReactDOM.render(<Provider store={store}><Body/></Provider>, document.getElementById('app'))
 ```
--`Provider` depend on the `context` of react to complete the transfer and sharing of the state, if you are familiar with react-redux, then iFlow's `Provider` usage rules are similar.
+- `Provider` depend on the `context` of react to complete the transfer and sharing of the state, if you are familiar with react-redux, then iFlow's `Provider` usage rules are similar.
 
 ### connect
 ```javascript

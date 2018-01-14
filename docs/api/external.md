@@ -1,25 +1,25 @@
 # `external` method
 
-* Description
+### Description
 `external` is used to wrap the external action asynchronous attribute recognition of an asynchronous action.
 
 
 ⚠️**Decorator usage that supports class attributes**
 
-* Usage
+### Usage
 ```javascript
 external(action)
 external(action)
 @external()
 ```
 
-* Arguments
+### Arguments
 action(function): async action
 
-* Returned value
+### Returned value
 (function): wrapped with external asynchronous feature action
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   calculate: external(async function (number) {

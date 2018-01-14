@@ -1,6 +1,6 @@
 # `middleware` method
 
-* Description
+### Description
 `middleware` is the iFlow middleware group API, and corresponds to each type and middleware usage is completely equivalent.
  
 
@@ -14,7 +14,7 @@
 | after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
 | end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
 
-* Usage
+### Usage
 
 ```javascript
 pipe.middleware({

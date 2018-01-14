@@ -1,22 +1,22 @@
 # `setState` method
 
-* Description
+### Description
 `setState` is used to pipe the status value of the current store's status tree in bulk settings
  
 
 
-* Usage
+### Usage
 ```javascript
 setState([setValue])
 ```
 
-* Arguments
+### Arguments
 setValue (*): values that need to be set in batches
 
-* Returned value
+### Returned value
 (*): none
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   counter: 0,

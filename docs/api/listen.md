@@ -1,22 +1,22 @@
 # `listen` method
 
-* Description
+### Description
 `listen` is used to quickly monitor the value of the path corresponding to the current pipe node
  
 
-* Usage
+### Usage
 ```javascript
 listen([path], (value) => {})
 ```
 
-* Arguments
+### Arguments
 path(String/Array): path that needs to be get value
 callback(value(*)): listener callback function passes changed value
 
-* Returned value
+### Returned value
 (*): returns the current pipe
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   counter: 0,

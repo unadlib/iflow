@@ -1,28 +1,28 @@
 # `addObserver` method
 
-* Description
+### Description
 State Change Post Notification middleware：
 `addObserver` is the post-notification middleware for all state change executions under current pipe, adding the middleware in the form of a callback function.
  
 
-* Usage
+### Usage
 ```javascript
 addObserver(
   (rootStore, [...path], stateKey, value, {mode}) => {}
 )
 ```
 
-* Arguments
+### Arguments
 rootStore (Object/Array): root store
 paths (Array = []): action path
 stateKey (String): state key
 value (*): The state has changed value, as mode is {mode: ' delete '} then this parameter does not exist.
 mode(Object = { mode:(String) }): state action type (delete/set/batch)
 
-* Returned value
+### Returned value
 (*): none
 
-* Examples
+### Examples
 ```javascript
 pipe.addObserver(
   (root, ...args)=>{

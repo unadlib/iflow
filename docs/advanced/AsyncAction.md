@@ -19,7 +19,7 @@ const store = iFlow({
 
 Of course, if you build state management in a class way, you can choose to use decorator `@external()`
 
-例如：
+For example:
 
 ```javascript
 import iFlow, { external } from 'iflow'

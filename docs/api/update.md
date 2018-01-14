@@ -1,21 +1,21 @@
 # `update` method
 
-* Description
+### Description
 `update` for pipe force trigger update
  
 
-* Usage
+### Usage
 ```javascript
 update([path])
 ```
 
-* Arguments
+### Arguments
 path (String/Array/Undefined): The path of the state that needs to be updated, the current node is updated by default when the value is undefined
 
-* Returned value
+### Returned value
 (*): none
 
-* Examples
+### Examples
 ```javascript
 const pipe = iFlow({
   counter: new Set([1]),
