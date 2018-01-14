@@ -1,6 +1,6 @@
 # 中间件
 
-iFlow提供了好几种不同类型的中间件用于控制不同流程下的Action运行和State改变，其中有`middleware`它是标准中间件API，它包含了所有能使用的五种类型中间件`init`/`start`/`before`/`after`/`end`，支持添加多个不同类型的中间件，而且被添加的同类型的中间件是有序的。
+iFlow提供了好几种不同类型的中间件用于控制不同流程下的Action运行和State改变，其中有[`middleware`](/docs/api/middleware.md)它是标准中间件API，它包含了所有能使用的五种类型中间件`init`/`start`/`before`/`after`/`end`，支持添加多个不同类型的中间件，而且被添加的同类型的中间件是有序的。
 
 ```javascript
 import iFlow from 'iflow'
