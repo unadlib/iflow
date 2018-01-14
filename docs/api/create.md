@@ -1,24 +1,26 @@
-# “create” 方法
+# `create` method
 
-* 描述
-`create` 用于Pipe初始化，并得到Store。
+* Description
+`create` for pipe initialization and get store.
+ 
 
-⚠️⚠️⚠️️需要特别注意的是：
+⚠️⚠️⚠️️Note:
 
-初始化中间件将会影响`create`的初始化赋值，以最后一个有返回值的初始化中间件为准，如果都没有，那么以create传参数的初始化的值为准。
+Initializing the middleware will affect the initialization assignment of `create`, whichever is the last initialization middleware with the return value, and if not, the initialization value of the Create pass parameter.
 
-* 用法
+
+* Usage
 ```javascript
 create(initialValue)
 ```
 
-* 参数
-initialValue (*): Pipe初始化的值
+* Arguments
+initialValue (*): pipe initialized value
 
-* 返回值
-(Array/Object): 返回Pipe初始化后的Store
+* Returned value
+(Array/Object): returns the store after pipe initialization
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   calculate (number) {

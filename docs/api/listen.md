@@ -1,22 +1,22 @@
-# “listen” 方法
+# `listen` method
 
-* 描述
-`listen`用于快速监听在当前Pipe节点下的对应path的值
+* Description
+`listen` is used to quickly monitor the value of the path corresponding to the current pipe node
+ 
 
-
-* 用法
+* Usage
 ```javascript
 listen([path], (value) => {})
 ```
 
-* 参数
-path(String/Array): 需要取值的path
-callback(value(*)): 监听回调函数传递已变化的值
+* Arguments
+path(String/Array): path that needs to be get value
+callback(value(*)): listener callback function passes changed value
 
-* 返回值
-(*): 返回当前Pipe
+* Returned value
+(*): returns the current pipe
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   counter: 0,

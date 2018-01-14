@@ -1,10 +1,13 @@
 # Action
->在上一章节中，我们设计了一个简单的todo state结构。这节我们来一起实现一下操作todo state的actions。
+>In the previous chapter, we designed a simple TODO state structure. In this section, let's implement the actions of the TODO state.
 
-对于Action修改节点状态需要引用到当前节点，有以下两种模式，分别是**非箭头函数的`this`**和**箭头函数的`slef`**。
+For the action Modify node state to be referenced to the current node, there are two modes, which are **the `this` of the non-arrow function** and **the `self` of the arrow function**.
+ 
 
-iFlow的action如果是非箭头函数，那么内部pipe node的用`this`的表示
-例如
+If the iFlow action is a non-arrow function, then the internal pipe node is represented by `this`
+ 
+For example:
+
 ```javascript
 const pipe = iFlow({
   test: 0,
@@ -14,7 +17,8 @@ const pipe = iFlow({
 })
 ```
 
-iFlow的Action如果是箭头函数，那么内部Pipe节点的用尾参数`self`的表示
+iFlow action if the arrow function, then the internal pipe node with the tail parameter `self` representation
+ 
 例如
 ```javascript
 const pipe = iFlow({
@@ -25,9 +29,9 @@ const pipe = iFlow({
 })
 ```
 
-iFlow支持多种函数式写法:
+iFlow supports a variety of functional notation:
 
-例如我们要在一个object结构下的TODO state管理结构上添加Action
+For example, to add an action on the TODO state management structure under an object structure:
 
 ```javascript
 import iFlow from 'iflow'
@@ -50,7 +54,8 @@ const pipe = iFlow({
 })
 ```
 
-如果是class结构的话
+If it's class structure,
+
 ```javascript
 import iFlow from 'iflow'
 
@@ -75,9 +80,11 @@ class Todo {
 
 const pipe = iFlow(new Todo())
 ```
-一个Action函数`this`是指向当前的pipe作用域`this`,事实上它是和一个原生JavaScript是一样的。需要注意的是，**同时一个action内部是可以有多个state的多次同步改变，而且每次改变都将进行视图的状态更新；如果需要一个Action只更新多个同步的state改变的话，可以使用[batch](/docs/api/batch.md)API，这样它将执行一次更新。**
 
-然后我们把后续的几个Action也补齐了。
+An action function `this` refers to the current pipe scope `this`, in fact it is the same as a native JavaScript. It should be noted that **At the same time a single action can have more than one state of synchronization changes, and each change will be a view of the status update, if you need an action to update only a number of synchronized changes, you can use [batch](/docs/api/batch.md) API so that it performs an update.**
+ 
+
+And then we've got the next few action.
 
 ```javascript
 import iFlow from 'iflow'
@@ -112,4 +119,4 @@ const pipe = iFlow({
 })
 ```
 
-为描述简洁，后续章节就不再同时描述使用class结构的pipe结构设计了。
+To describe simplicity, subsequent chapters will no longer describe the pipe structure design using the class structure.

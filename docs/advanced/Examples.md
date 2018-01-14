@@ -1,6 +1,6 @@
-# 示例
+# Examples
 
-本大章讨论到的可撤销/重做的TODO完整代码如下：
+The "Undo/Redo" Todo complete code discussed in this chapter is as follows:
 
 ```javascript
 import iFlow from 'iflow'
@@ -75,4 +75,4 @@ const pipe = iFlow({
 const store = pipe.create()
 ```
 
-[查看在线TODO示例](https://jsfiddle.net/unadlib/6wabhdqp/1/)
+[Online](https://jsfiddle.net/unadlib/6wabhdqp/1/)

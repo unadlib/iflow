@@ -1,28 +1,29 @@
-# “addListener” 方法
+# `addListener` method
 
-* 描述
+* Description
 
-Action后置通知中间件：
-`addListener`是当前Pipe下的全部Actions的执行后的通知中间件，以回调函数的方式添加该中间件。
-⚠️⚠️⚠️️**Action后置通知中间件支持异步**，前提是action应该外部action(即被`external`包装过的)的异步函数。
+Action Post Notification middleware:
 
-* 用法
+The `addListener` is the notification middleware after the execution of all actions under the current pipe, adding the middleware in the form of a callback function.
+The ⚠️⚠️⚠️️**Action Post Notification middleware supports asynchronous**, provided that the action should have an external action (that is, a `external` wrapped) asynchronous function.
+
+* Usage
 ```javascript
 addListener(
   (rootStore, [...paths], actionName, currentStore) => {}
 )
 ```
 
-* 参数
-rootStore (Object/Array): 根store
-paths (Array = []): action路径
-actionName (String): action名称字符串
-currentStore (Object/Array): 当前store节点
+* Arguments
+rootStore (Object/Array): root store
+paths (Array = []): action path
+actionName (String): action name
+currentStore (Object/Array): current store node
 
-* 返回值
-(*): 无
+* Returned value
+(*): none
 
-* 示例
+* Examples
 ```javascript
 pipe.addListener(
   (root, ...args)=>{

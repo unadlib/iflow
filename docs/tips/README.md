@@ -1,6 +1,6 @@
-# 技巧与小贴士
+# Tips
 
-由于时间仓促，我们将陆续补充本章节的内容。
+Due to the haste of time, we will supplement the contents of this chapter in succession.
 
-* [持久化](/docs/tips/Persistence.md)
-* [性能](/docs/tips/Performance.md)
+* [Persistence](/docs/tips/Persistence.md)
+* [Performance](/docs/tips/Performance.md)

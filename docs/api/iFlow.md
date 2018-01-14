@@ -1,20 +1,20 @@
-# “iFlow” 方法
+# `iFlow` method
 
-* 描述
-`iFlow`是iFlow的核心方法，它将一个State&ction Mix结构转变为Pipe，获得pipe，它是Pipe的一个实例，内部包含多个iFlow内置原型链方法。
+* Description
+`iFlow` is the core method of iFlow, which transforms a state & action mix into a pipe and pipe, an instance of pipe that contains multiple iFlow built-in prototype chain methods.
 
-* 用法
+* Usage
 ```javascript
 iFlow([stateAndAction])
 ```
 
-* 参数
-stateAndAction(Object/Array/Function): 需要Pipe实例化的结构
+* Arguments
+stateAndAction(Object/Array/Function): structure requiring pipe instantiation
 
-* 返回值
-(*): 返回实例化的pipe
+* Returned value
+(*): returns the instantiated pipe
 
-* 示例
+* Examples
 ```javascript
 import iFlow from 'iflow'
 const pipe0 = iFlow({

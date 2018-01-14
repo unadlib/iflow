@@ -1,23 +1,23 @@
-# “setInitializeValue” 方法
+# `setInitializeValue` method
 
-* 描述
-初始化中间件：
-`setInitializeValue`是当前Pipe下的初始化中间件，以回调函数的方式添加该中间件，该回调有返回值，那么该值将被传递在下一个初始化中间件参数，或直接进入初始化过程都赋值。
+* Description
+Initialized middleware:
+`setInitializeValue` is an initialization middleware under the current pipe, adding the middleware in the form of a callback function that has a return value that is passed to the next initialization middleware parameter or directly into the initialization process.
 
-* 用法
+* Usage
 ```javascript
 setInitializeValue(
   (initialValue) => {}
 )
 ```
 
-* 参数
-initialValue: 初始化`create`的参数或是上一个初始化中间件有返回的值。
+* Arguments
+initialValue: Initializes the parameter of `create` or the value returned by the previous initialization middleware
 
-* 返回值
-(*): 当前Pipe
+* Returned value
+(*): current Pipe
 
-* 示例
+* Examples
 ```javascript
 pipe.setInitializeValue(
   (initialValue)=>{

@@ -1,24 +1,25 @@
-# “external” 方法
+# `external` method
 
-* 描述
-`external`用于包装异步action的外部Action异步特性识别。
+* Description
+`external` is used to wrap the external action asynchronous attribute recognition of an asynchronous action.
 
-⚠️**支持class属性的装饰器用法**
 
-* 用法
+⚠️**Decorator usage that supports class attributes**
+
+* Usage
 ```javascript
 external(action)
 external(action)
 @external()
 ```
 
-* 参数
-action(function): 异步 action
+* Arguments
+action(function): async action
 
-* 返回值
-(function): 包装过的带外部异步特征action
+* Returned value
+(function): wrapped with external asynchronous feature action
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   calculate: external(async function (number) {

@@ -1,27 +1,28 @@
-# “addMiddleware” 方法
+# `addMiddleware` method
 
-* 描述
-State Change前置中间件：
-`addMiddleware`是当前Pipe下的全部State Change执行前的前置中间件，以回调函数的方式添加该中间件。
+* Description
+State Change forward middleware：
+`addMiddleware` is a pre-middleware that is executed before all state change execution under the current pipe, adding the middleware in the form of a callback function.
+ 
 
-* 用法
+* Usage
 ```javascript
 addMiddleware(
   (rootStore, [...path], stateKey, value, {mode}) => {}
 )
 ```
 
-* 参数
-rootStore (Object/Array): 根store
-paths (Array = []): action路径
-stateKey (String): state key字符串
-value (*): state将要改变的value,如mode是{mode: 'delete'}则这个参数不存在。
-mode(Object = { mode:(String) }): state操作类型(delete/set/batch)
+* Arguments
+rootStore (Object/Array): root store
+paths (Array = []): action path
+stateKey (String): state key
+value (*): the value that state will change, as mode is {mode: ' delete '}, does not exist.
+mode(Object = { mode:(String) }): state action type (delete/set/batch)
 
-* 返回值
-(*): 如果返回值，那么该返回值就将改变state value；同时多个State Change前置中间件按照有返回值进行队列，优先取最后一个有返回的值；如果全部都没有返回值，那么保持原有state value不变。
+* Returned value
+(*): If the return value is returned, then the return value will change the state value, while the number of current transition middleware queues with a return value, takes precedence over the last return value, and retains the original state value if none is returned.
 
-* 示例
+* Examples
 ```javascript
 pipe.addMiddleware(
   (root, ...args)=>{

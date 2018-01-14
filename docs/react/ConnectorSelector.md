@@ -1,25 +1,25 @@
 # Connector & Selector
 
-## 连接器
-react-iflow支持多种选择器用法，如果没有特别的需求，我们建议你只用连接就性，可以不用选择器，iflow将自动判断是否需要更新视图组件。
+## Connector
+react-iflow support for a variety of selector usage, if there is no special requirements, we recommend that you use only the connection on the sex, you can not use the selector, iFlow will automatically determine whether the need to update the view components.
 
-例如
+For example:
 
-- 高阶函数`flow`连接
+- Higher order function `flow` connection
 
 ```javascript
 class CustomComponent extends Component {}
 flow(store)(CustomComponent)
 ```
 
-如果使用了`Provider`， 你可以不必`flow`传入`store`。
+If you use `Provider`, you don't have to `flow` into `store`.
 
 ```javascript
 class CustomComponent extends Component {}
 flow()(CustomComponent)
 ```
 
-对于上面的方式，更简洁是直接用`connect`
+For the above way, more concise is the direct use of `connect`
 
 ```javascript
 import { connect } from 'react-iflow'
@@ -27,24 +27,24 @@ class CustomComponent extends Component {}
 connect(CustomComponent)
 ```
 
-- 装饰器用法
+- Decorator usage
 
 ```javascript
 @flow()
 class CustomComponent extends Component {}
 ```
 
-## 选择器
-当然，如果需要的话，react-iflow 也支持以下选择器
+## Selector
+Of course, react-iflow also supports the following selectors if needed.
 
-- 自定义Store子节点 **(如果没有额外的衍生需求，我们推荐这样的做法)**
+- Custom store child node **(We recommend this if there are no additional derivative requirements**
 
 ```javascript
 @flow(store.count)
 class CustomComponent extends Component {}
 ```
 
-- 带数组方式的选择器用法
+- Selector usage with array mode
 
 ```javascript
 @flow([(state, props) =>{
@@ -56,7 +56,7 @@ class CustomComponent extends Component {}
 class CustomComponent extends Component {}
 ```
 
-- 前置选择器的函数参数用法
+- function parameter usage of the predecessor selector
 
 ```javascript
 @flow(

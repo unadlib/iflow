@@ -1,8 +1,9 @@
-# 批量更新
+# Batch Update
 
-iFlow默认每次进行State改变的时候都将进行更新通知，但是有时Action可能有多次的state同步执行改变，我们希望它执行结束在一起通知更新，那么这时候我们就必须使用`batch`来合并更新了。
+iFlow the default will be updated every time the state changes, but sometimes the action may have several times the state synchronized execution changes, we want it to execute the end of the notification update, then we must use `batch` to merge the update.
 
-例如
+For example:
+
 ```javascript
 import iFlow, { batch } from 'iflow'
 const store = iFlow({
@@ -17,7 +18,7 @@ const store = iFlow({
 store.multiPush()  // It will batch update.
 ```
 
-同样的如果你的类的结构设计，那么建议你使用它的装饰器`@batch()`
+Similarly, if your class structure is designed, then it is recommended that you use its decorator `@batch()`
 
 ```javascript
 import iFlow, { external } from 'iflow'
@@ -34,5 +35,5 @@ const store = iFlow(new class {
 store.multiPush()  // It will batch update.
 ```
 
-更多详细说明请查看相关[batch](/docs/api/batch.md)API文档。
+For more information, see [batch](/docs/api/batch.md) API documentation.
 

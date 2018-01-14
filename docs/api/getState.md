@@ -1,21 +1,22 @@
-# “getState” 方法
+# `getState` method
 
-* 描述
-`getState`用于Pipe得到当前的store的状态树
+* Description
+`getState` for pipe to get the status tree of the current store
+ 
 
 
-* 用法
+* Usage
 ```javascript
 getState()
 ```
 
-* 参数
-(*): 无
+* Arguments
+(*): none
 
-* 返回值
-(Array/Object): 返回需要取值的path的值
+* Returned value
+(Array/Object): returns the value of the path that needs to be taken
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   calculate: external(async function (number) {

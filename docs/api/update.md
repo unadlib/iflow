@@ -1,20 +1,21 @@
-# “update” 方法
+# `update` method
 
-* 描述
-`update`用于Pipe主动触发更新
+* Description
+`update` for pipe force trigger update
+ 
 
-* 用法
+* Usage
 ```javascript
 update([path])
 ```
 
-* 参数
-path (String/Array/Undefined): 需要被更新的State的path，当值为Undefined时，默认更新当前节点
+* Arguments
+path (String/Array/Undefined): The path of the state that needs to be updated, the current node is updated by default when the value is undefined
 
-* 返回值
-(*): 无
+* Returned value
+(*): none
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   counter: new Set([1]),

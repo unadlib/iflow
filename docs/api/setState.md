@@ -1,21 +1,22 @@
-# “setState” 方法
+# `setState` method
 
-* 描述
-`setState`用于Pipe批量设置当前的store的状态树的状态值
+* Description
+`setState` is used to pipe the status value of the current store's status tree in bulk settings
+ 
 
 
-* 用法
+* Usage
 ```javascript
 setState([setValue])
 ```
 
-* 参数
-setValue (*): 需要被批量设置的值
+* Arguments
+setValue (*): values that need to be set in batches
 
-* 返回值
-(*): 无
+* Returned value
+(*): none
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   counter: 0,
@@ -31,6 +32,6 @@ store.__pipe__.setState({
 }) // value: { counter: 99, foo: { bar: 88 } }
 ```
 
-⚠️⚠️⚠️需要注意的是：
+⚠️⚠️⚠️Note:
 
-**该批量赋值默认是逐一通知更新的，因此为提高性能，建议配合批量更新API使用`batch`**
+**The bulk assignment is updated by default, so it is recommended that you use `batch` with the batch update API to improve performance**

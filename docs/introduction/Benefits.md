@@ -1,26 +1,25 @@
-# 优点
+# Benefits
 
-* **保持数据结构的原始性**
+* **Keep the data structure primitive**
 
-iFlow因为利用Proxy机制，因此保持了数据结构的原始性，同时支持异步函数以及其他类型函数，当然也包括普通的类和函数。
+iFlow because of the proxy mechanism, it retains the primitive nature of the data structure while supporting asynchronous functions as well as other types of functions, including, of course, ordinary classes and functions.
 
-* **无样板代码**
+* **No boilerplate code**
 
-iFlow能给你比较自由的使用它来实现属于符合实际开发需求的状态数据结构设计，而不会因为各种库的限制来变成有过多的样板代码。
+iFlow can give you more freedom to use it to implement a state data structure that is in line with the actual development needs, and not to have too many boilerplate code because of the limitations of various libraries.
 
-* **易于面向对象**
+* **Be easy to OOP**
 
-有时当我们需要解耦业务代码，我们可能需要一些面向对象编程当设计，所以状态库如果能支持它当然是更好了。
+Sometimes when we need decoupled business code, we may need some object-oriented programming when design, so the State Library is better if it can support it.
 
-* **尽可能少的选择器**
+* **As few selectors as possible**
 
-在使用Web框架(如React)的时候，与之对应的连接库[react-iflow](https://github.com/unadlib/react-iflow)可以让你能尽可能少一些选择器的编写与操作。
+When using a web framework such as react, the corresponding connection library [react-iflow](https://github.com/unadlib/react-iflow) allows you to write and manipulate as few selectors as possible.
 
-* **强大的中间件**
+* **Powerful middleware**
 
-如果有必要，事实上iFlow是强大且有用的，你可以利用它来实现各种耦合业务代码.
+If necessary, in fact iflow is powerful and useful, and you can use it to implement a variety of coupled business codes.
 
-* **可组合和可扩展的Store**
+* **Composable and scalable store**
 
-iFlow提倡将Store组合成store tree,不用担心无关的Store造成一些性能上的影响，因为它是动态匹配的，你可以放心自由的组合和拓展Store。
-
+iFlow advocates the store group to synthesize the store tree without worrying about the performance impact of the unrelated store, because it is dynamically matched and you can be assured of free combination and expansion of the store.

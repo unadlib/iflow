@@ -1,6 +1,7 @@
 # State
-这节应该是最简单的部分了，因为iFlow支持很多模式的state设计，这也是当初设计它的初衷。
-例如你可以这样用Object的方式写一个TODO的State
+This section should be the simplest part, because iFlow supports many modes of state design, which was originally designed.
+
+For example, you can write a todo state in object mode.
 
 ```javascript
 import iFlow from 'iflow'
@@ -10,7 +11,8 @@ const pipe = iFlow({
 })
 ```
 
-或者使用ES6的class来实现
+Or use the ES6 class to implement it.
+
 ```javascript
 import iFlow from 'iflow'
 
@@ -24,9 +26,9 @@ class Todo {
 const pipe = iFlow(new Todo)
 ```
 
-当然为了关联变量在结构上的耦合，我们通常也会把一些静态State也写在上面便于管理，例如：
+Of course, in order to correlate the structural coupling of variables, we usually also write some static state on the above to facilitate management, for example:
 
->添加在Object上
+>Add on Object
 
 ```javascript
 import iFlow from 'iflow'
@@ -42,7 +44,7 @@ const pipe = iFlow({
 })
 ```
 
->添加在class上
+>Add to Class
 
 ```javascript
 import iFlow from 'iflow'
@@ -62,8 +64,8 @@ class Todo {
 const pipe = iFlow(new Todo())
 ```
 
-怎么样，是不是很简单。设计state结构就是如此简单和直接，就和你平常写原生的JavaScript是完全一样的。
+How, is not very simple. Designing the state structure is so simple and straightforward that it is exactly the same as your usual writing of Vanilla JavaScript.
 
-⚠️重要的是：👇
+⚠️Note:
 
-️**被定义State的类型和结构，iFlow会一直保持它的原始类型和结构，除非Action主动操作改变它的类型和结构**。
+**The type and structure of the State is defined, and iFlow retains its original type and structure unless the action initiative changes its type and structure**。

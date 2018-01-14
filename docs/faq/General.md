@@ -1,3 +1,3 @@
-# 综合
+# General
 
-待编辑
+To edit

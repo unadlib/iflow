@@ -149,6 +149,16 @@ pipe.middleware({
 })
 ```
 
+* The middleware tables are as follows:
+
+| Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
+| :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
+| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized middleware                |
+| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
+| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
+| after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
+| end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
+
 * create()
 >Every pipe will be created with initial value or without.
 ```javascript
@@ -197,14 +207,68 @@ const pipe = iFlow(new Pipe())
 ### How it works
 ![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/assets/flowChart.png)
 ### Documentation
-TO EDIT
+
+[Online Documents](https://iflow.js.org)
+* [Introduction](/README.md)
+* [Basics](/docs/basics/README.md)
+* [Advanced](/docs/advanced/README.md)
+* [API](/docs/api/README.md)
+* [Tips](/docs/tips/README.md)
+* [React](/docs/react/README.md)
+* [FAQ](/docs/faq/README.md)
+
 ### Benefits
-TO EDIT
+
+* **Keep the data structure primitive**
+
+iFlow because of the proxy mechanism, it retains the primitive nature of the data structure while supporting asynchronous functions as well as other types of functions, including, of course, ordinary classes and functions.
+
+* **No boilerplate code**
+
+iFlow can give you more freedom to use it to implement a state data structure that is in line with the actual development needs, and not to have too many boilerplate code because of the limitations of various libraries.
+
+* **Be easy to OOP**
+
+Sometimes when we need decoupled business code, we may need some object-oriented programming when design, so the State Library is better if it can support it.
+
+* **As few selectors as possible**
+
+When using a web framework such as react, the corresponding connection library [react-iflow](https://github.com/unadlib/react-iflow) allows you to write and manipulate as few selectors as possible.
+
+* **Powerful middleware**
+
+If necessary, in fact iflow is powerful and useful, and you can use it to implement a variety of coupled business codes.
+
+* **Composable and scalable store**
+
+iFlow advocates the store group to synthesize the store tree without worrying about the performance impact of the unrelated store, because it is dynamically matched and you can be assured of free combination and expansion of the store.
+
 ### Limitations and pitfalls
-TO EDIT
+
+* [Unable to automate batch update within dispatcher](https://github.com/unadlib/iflow/issues/3)
+For the action of a normal synchronization process, the merge problem with the same state being changed multiple times is ignored and we will fix it.
+
+* [Computed not implemented](https://github.com/unadlib/iflow/issues/1)
+We consider implementing standard observable to complete computed, or implementing non-standard immutable patterns to cache derivative computations.
+
+* [Proxy/Reflect polyfill not supported](https://github.com/unadlib/iflow/issues/2)
+Since IE11 does not support ES6 Proxy/Reflect, we will consider adding Proxy/Reflect polyfill to support IE11.
+
+* Immutable not supported
+A sub-component that is connected to the state component is iFlow, and the `shouldComponentUpdate` API within its sub-component will not be able to be judged for update control if it is used in the iFlow of the parent component.
+
+* A prototype chain function injection of a primitive type that does not support native proxy cannot trigger notification of these types of change behavior automatically
+Currently known unsupported types are: `Set` / `WeakSet` / `Map` / `WeakMap`, and soon we will support it.
+
 ### Support and compatibility
+
+| Browsers          |  Chrome    | IE    | Edge  | FireFox  | Safari  | Opera   | Node    |
+| :---------------- | :--------: | :---: | :---: | :------: | :-----: | :-----: |-------: |
+| Supported         | ✅         |  ❌   |  ✅    |  ✅      |  ✅     |  ✅     |  ✅     |
+| Supported version |   49+      |  -    |  12+  |  18+     |  10+    |  36+    |  6.4.0+ |
+
 ### Change Log
-TO EDIT
+* Completed alpha version
 ### License
 
 ---

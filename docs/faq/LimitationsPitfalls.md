@@ -1,18 +1,17 @@
-# 限制与陷阱
+# Limitations Pitfalls
 
-* [无法调度器内部自动批处理更新](https://github.com/unadlib/iflow/issues/3)
-对于一个普通的同步流程的action内，同个state被改变多次的合并问题之前被忽略了，我们将进行修复。
+* [Unable to automate batch update within dispatcher](https://github.com/unadlib/iflow/issues/3)
+For the action of a normal synchronization process, the merge problem with the same state being changed multiple times is ignored and we will fix it.
 
-* [未实现Computed](https://github.com/unadlib/iflow/issues/1)
-我们考虑实现标准的Observable来完成Computed，或者实现非标准immutable模式来cache衍生计算。
+* [Computed not implemented](https://github.com/unadlib/iflow/issues/1)
+We consider implementing standard observable to complete computed, or implementing non-standard immutable patterns to cache derivative computations.
 
-* [未支持Proxy/Reflect的polyfill](https://github.com/unadlib/iflow/issues/2)
-由于IE11未支持ES6的Proxy/Reflect，我们将考虑加入Proxy/Reflect的polyfill以便支持IE11。
+* [Proxy/Reflect polyfill not supported](https://github.com/unadlib/iflow/issues/2)
+Since IE11 does not support ES6 Proxy/Reflect, we will consider adding Proxy/Reflect polyfill to support IE11.
 
-* 未支持Immutable
-被iFlow连接state组件的子组件，如果用到该父组件的iFlow的State，那么其子组件内的`shouldComponentUpdate`API将无法进行判断进行更新控制。
+* Immutable not supported
+A sub-component that is connected to the state component is iFlow, and the `shouldComponentUpdate` API within its sub-component will not be able to be judged for update control if it is used in the iFlow of the parent component.
 
-* 未支持原生无法Proxy的原生类型的原型链函数注入，引发这些类型的改变行为无法自动触发通知
-目前已知的不支持类型有：`Set` / `WeakSet` / `Map` / `WeakMap`，很快我们将支持它。
-
-
+* A prototype chain function injection of a primitive type that does not support native proxy cannot trigger notification of these types of change behavior automatically
+Currently known unsupported types are: `Set` / `WeakSet` / `Map` / `WeakMap`, and soon we will support it.
+ 

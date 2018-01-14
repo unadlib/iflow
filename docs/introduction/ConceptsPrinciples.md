@@ -1,27 +1,31 @@
-# 概念与原则
+# Concepts Principles
 
->用过了一些状态管理库或者容器以后，总觉得应该有一种新的状态管理库，虽然它是Mutable结构，但是同时应该能保持状态的数据类型原始性；它也支持Immutable，同时兼顾Mutable的有利于编程和操作，而且它应该是渐进式的，不会因过多的繁琐操作(如解构操作Spread Operator)以及其他多种复杂的概念而破坏编程乐趣。
+>After using some state management libraries or containers, I always feel that there should be a new state management library, although it is a mutable structure, but it should be able to maintain the state of the original data type, it also supports immutable, while taking into account mutable for programming and operation, And it should be incremental, not disruptive to programming fun because of too much cumbersome operations, such as deconstruction spread Operator, and other complex concepts.
+  
+Therefore, iFlow attempts to build a new state management library based on **paths match** using Proxy & Reflect of ECMAScript 2015. What needs to be specifically stated is that the **iFlow definition store is comprised of actions and state**.
 
-因此，iFlow尝试利用ECMAScript 2015的Proxy & Reflect构建一个基于**Paths Match**的一种新的状态管理库。需要特别说明的是**iFlow定义的Store是包括Actions和State**。
 
 * **Paths Match**
 
-在View组件进行引用Store的State的时候获得Getter Paths；在Action被触发的时候，将通过Proxy得到Setter Path。通过观察者来传递Setter Path，并在连接器进行快速的Getter Paths Match.
+The Getter Paths is obtained when the view component is referencing the state of the store, and the setter Path is obtained by proxy when the action is triggered. Pass the setter Path through the viewer and perform a quick Getter Paths Match in the connector.
 
-* **Action 运行过程**
+* **Action Run Process**
 
 View组件触发Action，而Action执行的时候先进过`addInterceptor`设置的拦截中间件，然后如果有Action内部有进行State操作就会先经过`addMiddleware`设置的标准中间件，然后在进行State操作，然后在通过`addObserver`设置的观察中间件，直到Action执行完成，然后在最后调用`addListener`设置的监听中间件。当然，**默认情况，这些中间件没有被设置和使用，是不会进入到这些中间件的**。 默认情况下，对应的View使用到的State通知改变是基于每次的State改变，而不是Action每次执行结束的时候改变，当然，我们也有提供[batch](/docs/api/batch.md)API来批量更新State的改变。
 
+The view component triggers the action, and the action executes with an advanced `addInterceptor` set of blocking middleware, and then if there is a standard middleware within the action that has to go through the `addMiddleware` setting, Then the state operation is performed, then the observation middleware is set through `addObserver` until the action completes, and then at the end of the call `addListener` set up the listening middleware. Of course, **By default, these middleware are not set up and used, and are not entered into these middleware's**. By default, the state notification change used by the corresponding view is changed based on each state change, not the action at the end of each execution, and of course, we also provide [batch](/docs/api/batch.md) API to batch update state changes.
+ 
 
-* **State 引用过程**
 
-Store的State被先选择器(如果有设置)处理，然后再经过连接器，最后被插入到View组件内。
+* **State Reference procedure**
 
-### 如何工作
+The state of the store is processed by the selector (if there is a setting) and then through the connector, which is then inserted into the view component.
+ 
+### How to work
 ![Data Flow](https://raw.githubusercontent.com/unadlib/iflow/master/assets/flowChart.png)
 
 ---
->抽象化公式来表达就是: action (store) => store = newStore
+>Formula to express is: action (store) => store = newStore
 
 ---
-欢迎使用iFlow!🎉🎉🎉
+Welcome to use iFlow!🎉🎉🎉

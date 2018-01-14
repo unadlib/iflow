@@ -1,13 +1,14 @@
-# 基础篇
+# Basics
 
-如果你刚刚才接触状态管理库，那么你也可以快速使用iFlow来是一个完整的程序；当然，如果你使用状态管理库的经验丰富，那么iFlow可以使用一些高级接口，设计一些其他库不好实现的架构，而且你可能会惊喜发现iFlow有一些时下流行的状态库不好实现的特性。
+If you have just contacted the state Management library, then you can also quickly use iFlow to be a complete program; Of course, if you use the experience of the state Management library, then iFlow can use some advanced interfaces to design some architectures that are not well implemented by other libraries, And you may be pleasantly surprised to discover that iFlow has some of the most popular features of the State Library that are not well implemented.
+ 
 
-为方便描述，我们定义Store包括State和Actions，而未初始化的Store我们称为**Pipe**。
+For ease of description, we define the store including state and actions, and the uninitialized store we call **Pipe**.
 
-下面的基本教程将会一步步教你开发简单的Todo应用。
+The following basic tutorials will step you through the development of simple TODO applications.
 
 * [State](/docs/basics/State.md)
 * [Action](/docs/basics/Action.md)
 * [Pipe](/docs/basics/Pipe.md)
 * [Store](/docs/basics/Store.md)
-* [示例: TODO](/docs/basics/Examples.md)
+* [Examples: TODO](/docs/basics/Examples.md)

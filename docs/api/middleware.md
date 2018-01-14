@@ -1,19 +1,20 @@
-# “middleware” 方法
+# `middleware` method
 
-* 描述
-`middleware`是iFlow中间件组API，和对应是各类型和中间件用法完全等价。
+* Description
+`middleware` is the iFlow middleware group API, and corresponds to each type and middleware usage is completely equivalent.
+ 
 
-* 中间件对照表如下： 
+* The middleware tables are as follows:
 
-| 中间件API    | 直接接口API          | return | return value       | 异步  | 说明                       |
+| Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
-| init        | [setInitializeValue](/docs/api/setInitializeValue.md)  | ✅     | 可添加初始化的值     | ❌     | 初始化中间件                |
-| start       | [addInterceptor](/docs/api/addInterceptor.md)      | ✅     | 可改变action参数    | ✅     | Action前置中间件             |
-| before      | [addMiddleware](/docs/api/addMiddleware.md)       | ✅     | 可改变set的值       | ❌     | State Change前置中间件      |
-| after       | [addObserver](addObserver.md)         | ❌     | -                  | ❌     | State Change后置通知中间件   | 
-| end         | [addListener](addListener.md)         | ❌     | -                  | ✅     | Action后置通知中间件         |
+| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | initialized middleware                |
+| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
+| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
+| after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
+| end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
 
-* 用法
+* Usage
 
 ```javascript
 pipe.middleware({

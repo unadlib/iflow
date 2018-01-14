@@ -1,3 +1,3 @@
-# 更新控制
+# Control Update
 
-待编辑
+To edit

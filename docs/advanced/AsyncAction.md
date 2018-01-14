@@ -1,8 +1,8 @@
 # Async Action
 
-由于目前浏览器的支持情况并没有完美支持原生的`async`类型函数，所以我们在有必须外部使用异步串联Actions的时候，必须用`external`来包装一下，以包装外部的API能够正确识别使用这个Action的异步特性。
+Because the current browser support does not perfectly support the native `async` type function, we must use ` external` to wrap it when there is an external usage of asynchronous inline actions, so that the external API can properly identify the asynchronous features that use this action.
 
-例如：
+For example:
 
 ```javascript
 import iFlow, { external } from 'iflow'
@@ -17,7 +17,7 @@ const store = iFlow({
 })
 ```
 
-当然如果你如果用类的方式来构建state管理的时，你可以选择使用装饰器`@external()`
+Of course, if you build state management in a class way, you can choose to use decorator `@external()`
 
 例如：
 
@@ -35,8 +35,8 @@ const store = iFlow(new class {
 })
 ```
 
-更多详细说明请查看相关[external](/docs/api/external.md)API文档。
+For more information, see [external](/docs/api/external.md) API documentation.
 
-⚠️⚠️⚠️️需要注意的是： 
+⚠️⚠️⚠️️Note： 
 
-**如果你只是想Action内部异步的话，那么其实你可以不必使用`external`来包装成外部的异步Action。**
+**If you just want to be asynchronous within the action, you may not have to use `external` to wrap the asynchronous action externally.**

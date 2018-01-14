@@ -1,6 +1,6 @@
-# 中间件
+# Middleware
 
-iFlow提供了好几种不同类型的中间件用于控制不同流程下的Action运行和State改变，其中有[`middleware`](/docs/api/middleware.md)它是标准中间件API，它包含了所有能使用的五种类型中间件`init`/`start`/`before`/`after`/`end`，支持添加多个不同类型的中间件，而且被添加的同类型的中间件是有序的。
+iFlow provides several different types of middleware for controlling action and state changes under different processes, including [`middleware`](/docs/api/middleware.md), which is the standard middleware API, It contains all the five types of middleware `init`/`start`/`before`/`after`/`end `that can be used, supporting the addition of several different types of middleware, and the added middleware of the same type is ordered.
 
 ```javascript
 import iFlow from 'iflow'
@@ -18,19 +18,19 @@ const pipe = iFlow({
 const store = pipe.create()
 ```
 
-如果只需要快速添加单个类型中间件，iFlow允许可以使用其对应的简单API。
+If you only need to quickly add a single type of middleware, iFlow allows you to use its corresponding simple APIs.
 
-* 中间件对照表如下： 
+* The middleware tables are as follows:
 
-| 中间件API    | 直接接口API          | return | return value       | 异步  | 说明                       |
+| Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
-| init        | setInitializeValue  | ✅     | 可添加初始化的值     | ❌     | 初始化中间件                |
-| start       | addInterceptor      | ✅     | 可改变action参数    | ✅     | Action前置中间件             |
-| before      | addMiddleware       | ✅     | 可改变set的值       | ❌     | State Change前置中间件      |
-| after       | addObserver         | ❌     | -                  | ❌     | State Change后置通知中间件   | 
-| end         | addListener         | ❌     | -                  | ✅     | Action后置通知中间件         |
+| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized middleware                |
+| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
+| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
+| after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
+| end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
 
-标准中间件的API和直接中间件接口的API使用方式是等价的，例如
+The API for standard middleware and the API usage of the direct middleware interface are equivalent, for example:
 
 ```javascript
 import iFlow from 'iflow'
@@ -58,16 +58,17 @@ const pipe = iFlow({
 const store = pipe.create()
 ```
 
-上述两种添加一次Action开始执行拦截中间件是等价的，其他对应API也是如此。
+The above two kinds of adding an action to start blocking middleware are equivalent, as are other corresponding APIs.
 
-## 用途
-iFlow的middleware是强大的，有用的。
-例如，我们可以设计一个自定义的middleware ，完成一个持久化中间件插件，我们可以用于调试可以打印对应的Store的State Tree快照，或者可以利用middleware完成一个immutableWeb库的连接器，等等。
+## Use
+iFlow's middleware is powerful and useful. For example, we can design a custom middleware, complete a persistent middleware plug-in, we can use to debug a state tree snapshot that can print the corresponding store, or we can use middleware to complete a immutable web library connector, Wait a minute.
 
-它可以让丰富需求的开发者进行各种中间插件的开发。由于时间仓促，我们后续会对改章节继续补充更详细信息。
+It allows developers with rich requirements to develop various intermediary plug-ins. Due to the haste of time, we will continue to add more detailed information to the change section.
 
-## 示例
-TODO例子我们可以为它加上调试中间件，并为加上Undo/Redo功能需要的record state中间件
+## Example
+
+Todo example we can add debugging middleware to it, and for adding the Undo/Redo function needs of the record State middleware.
+
 ```javascript
 const pipe = iFlow({
   //deliberately omit state and actions for demo.
@@ -109,4 +110,5 @@ const pipe = iFlow({
 
 const store = pipe.create()
 ```
-这样我们就简单实现Undo`store.doing(-1)`和 Redo`store.doing(1)`操作函数，很简单吧。
+
+This allows us to simply implement the Undo `store.doing(-1)` and Redo `store.doing(1)` Operation function, very simply.

@@ -1,21 +1,21 @@
-# “get” 方法
+# `get` method
 
-* 描述
-`get`用于快速在Pipe通过path得到当前节点下的对应path的值
+* Description
+`get` is used to quickly obtain the corresponding path value under the current node in pipe via path
+ 
 
-
-* 用法
+* Usage
 ```javascript
 get([path])
 ```
 
-* 参数
-path(String/Array): 需要取值的path
+* Arguments
+path(String/Array): path that needs to be evaluated
 
-* 返回值
-(*): 返回需要取值的path的值
+* Returned value
+(*): returns the value of the path that needs to be taken
 
-* 示例
+* Examples
 ```javascript
 const pipe = iFlow({
   calculate: external(async function (number) {
