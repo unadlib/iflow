@@ -4,14 +4,12 @@ import uglify from 'rollup-plugin-uglify'
 import { minify } from 'uglify-es'
 
 const pgk = require('./package.json')
+const env = process.env.NODE_ENV
 
-export default {
+const config = {
   input: 'lib/index.js',
   output: {
-    file: `dist/index.js`,
-    format: 'umd',
     name: pgk.name,
-    sourcemap: true,
     exports: 'named'
   },
   plugins: [
@@ -29,7 +27,22 @@ export default {
       plugins: ['external-helpers'],
       babelrc: false,
       exclude: 'node_modules/**',
-    }),
-    uglify({}, minify)
+    })
   ],
 }
+
+if (env === 'es' || env === 'cjs') {
+  config.output = {...config.output, format: env,}
+}
+if (env === 'development' || env === 'production') {
+  config.output = {...config.output, format: 'umd', name: 'iFlow'}
+}
+
+if (env === 'production') {
+  config.output.sourcemap = true
+  config.plugins.push(
+    uglify({}, minify)
+  )
+}
+
+export default config

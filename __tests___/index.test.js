@@ -1,4 +1,5 @@
 import iFlow, { batch, external } from '../lib'
+
 /* global test, expect */
 
 // setState
@@ -351,6 +352,97 @@ test('batch decorator test', () => {
   setTimeout(() => expect(store.batch.bb).toEqual(4))
 })
 
+
+let a,b
+const foo0 = iFlow({
+  x: {
+    e: 1
+  }
+}).addObserver((...args) => {
+  a = args.slice(1, -3)
+}).create()
+
+const bar0 = iFlow({
+  a: iFlow(foo0.x),
+}).addObserver((...args) => {
+  b = args.slice(1, -3)
+}).create()
+
+test('cross store test', () => {
+  setTimeout(()=>{
+    foo0.x.e = 99
+    expect(a).toEqual(['x'])
+    expect(b).toEqual(undefined)
+  })
+})
+
+test('cross store test1', () => {
+  setTimeout(()=>{
+    bar0.a.e = 9999
+    expect(a).toEqual(['x'])
+    expect(b).toEqual(["a","e"])
+  })
+})
+
+let test1foo,test1fooC
+const text1c = iFlow({
+  x: {
+    c: {
+      v:1
+    }
+  }
+}).addObserver((...args)=>{
+  test1fooC = args.slice(1, -3)
+})
+
+text1c.create()
+
+const test1 = iFlow(new class {
+  x = text1c
+}).addObserver((...args)=>{
+  test1foo = args.slice(1, -3)
+}).create()
+
+test('share pipe1', () => {
+  test1.x.x.c.v = 11
+  expect(test1fooC).toEqual(['x','c'])
+  expect(test1foo).toEqual(['x','x','c'])
+})
+
+
+let store11sub, store11a
+const store11 = iFlow({
+  a: {
+    b:{
+      v:1
+    },
+    k:{
+      v:1
+    }
+  }
+}).addObserver((...args)=>{
+  store11sub = args.slice(1, -3)
+}).create()
+
+const store11A = iFlow({
+  a: store11
+}).addObserver((...args)=>{
+  store11a = args.slice(1, -3)
+}).create()
+
+test('share store0', () => {
+  store11.a.b.v = 19
+  expect(store11sub).toEqual(['a','b'])
+  expect(store11a).toEqual(['a','a','b'])
+})
+
+test('share store1', () => {
+  setTimeout(()=>{
+    store11A.a.a.k.v = 19
+    expect(store11sub).toEqual(['a','k'])
+    expect(store11a).toEqual(['a','a','k'])
+  })
+})
 
 
 

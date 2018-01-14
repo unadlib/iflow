@@ -1,0 +1,22 @@
+{
+  "title": "iFlow Documents",
+  "gitbook": "3.2.2",
+  "plugins": ["github", "edit-link", "anchors", "copy-code-button", "github-buttons"],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/unadlib/iflow"
+    },
+    "edit-link": {
+      "base": "https://github.com/unadlib/iflow/tree/master/docs",
+      "label": "edit documents"
+    },
+    "github-buttons": {
+      "repo": "unadlib/iflow",
+      "types": [
+        "star",
+        "fork"
+      ],
+      "size": "small"
+    }
+  }
+}

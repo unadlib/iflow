@@ -30,15 +30,49 @@ It's dynamic and extensible, you can directly use it to add, delete and reassign
 * [Documentation](https://github.com/unadlib/iflow#documentation)
 * [Benefits](https://github.com/unadlib/iflow#benefits)
 * [Limitations and pitfalls](https://github.com/unadlib/iflow#limitations-and-pitfalls)
+* [Support and compatibility](https://github.com/unadlib/iflow#support-and-compatibility)
 * [Change Log](https://github.com/unadlib/iflow#change-log)
 
 ### Getting started
 * State
 > support all ECMAScript2015 data types except function, and state can be defined or assigned later.
+```javascript
+import iFlow from 'iflow'
+
+const pipe = iFlow({
+  counter: 0,
+})
+```
 * Action
 > support all type functions, and dynamic insert action or remove it.If you use `function`, its function's `this` is the current self pipe store. If you ues `arrow function`, the last argument is the current `self` pipe store.
+```javascript
+import iFlow from 'iflow'
+
+const pipe = iFlow({
+  calculate: function(number) {
+    this.counter += number
+  },
+  counter: 0,
+})
+```
 * Data flow
-> View trigger action, and run state's setter paths/value, then its setter paths was matched to the components's getter paths, finally decide whether to update
+> View trigger function from `store` action, and run state's setter paths/value, then its setter paths was matched to the components's getter paths, finally decide whether to update
+```javascript
+import iFlow from 'iflow'
+
+const pipe = iFlow({
+  calculate: function(number) {
+    this.counter += number
+  },
+  counter: 0,
+})
+
+const store = pipe.create()
+```
+```javascript
+store.calculate(1)
+console.log(store.counter) // console.log: 1
+```
 ### Installation
 ```bash
 yarn add iflow
@@ -166,6 +200,7 @@ TO EDIT
 TO EDIT
 ### Limitations and pitfalls
 TO EDIT
+### Support and compatibility
 ### Change Log
 TO EDIT
 ### License
