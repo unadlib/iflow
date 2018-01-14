@@ -1,6 +1,6 @@
 {
   "name": "iflow",
-  "version": "1.0.0-alpha.30",
+  "version": "1.0.0-alpha.31",
   "description": "Concise & powerful state management framework for Javascript.",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
@@ -18,7 +18,7 @@
     "build:es": "cross-env BABEL_ENV=es NODE_ENV=es rollup -c -o dist/es/index.js",
     "build:umd": "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -o dist/umd/index.js",
     "build:umd:min": "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -o dist/umd/index.min.js",
-    "build": "yarn build:clean && npm run build:cjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build": "yarn build:clean && yarn build:cjs && yarn build:es && yarn build:umd && yarn build:umd:min",
     "release": "babel lib -d build",
     "docs:prepare": "gitbook install",
     "docs:watch": "npm run docs:prepare && gitbook serve",
