@@ -153,11 +153,11 @@ pipe.middleware({
 
 | Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
-| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized middleware                |
-| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
-| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
-| after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
-| end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
+| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized                |
+| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward |
+| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward|
+| after       | addObserver         | ❌     | -                  | ❌     | State Change Notification   | 
+| end         | addListener         | ❌     | -                  | ✅     | Action Notification |
 
 * create()
 >Every pipe will be created with initial value or without.
