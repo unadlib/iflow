@@ -35,7 +35,7 @@ if (env === 'es' || env === 'cjs') {
   config.output = {...config.output, format: env,}
 }
 if (env === 'development' || env === 'production') {
-  config.output = {...config.output, format: 'umd', name: 'iFlow'}
+  config.output = {...config.output, format: 'umd'}
 }
 
 if (env === 'production') {
