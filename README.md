@@ -16,6 +16,9 @@ It's dynamic and extensible, you can directly use it to add, delete and reassign
 * **💥Async function and others type functions** - Any actions will be composed or invoked internal.
 * **🚀Powerful middleware** - Middleware can handle the store any change event.
 
+> [Documents](https://iflow.js.org/) 
+> [中文文档](http://cn.iflow.js.org/) 
+
 ### Contents
 * [Features](https://github.com/unadlib/iflow#features)
 * [Installation](https://github.com/unadlib/iflow#Installation)
