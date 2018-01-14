@@ -154,8 +154,8 @@ pipe.middleware({
 | APIs    | Direct API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
 | init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized                |
-| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward |
-| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward|
+| start       | addInterceptor      | ✅     | action parameters    | ✅     | Action forward |
+| before      | addMiddleware       | ✅     | a setter value       | ❌     | State Change forward|
 | after       | addObserver         | ❌     | -                  | ❌     | State Change Notification   | 
 | end         | addListener         | ❌     | -                  | ✅     | Action Notification |
 
