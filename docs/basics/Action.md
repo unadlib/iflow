@@ -19,7 +19,8 @@ const pipe = iFlow({
 
 iFlow action if the arrow function, then the internal pipe node with the tail parameter `self` representation
  
-例如
+For example:
+
 ```javascript
 const pipe = iFlow({
   test: 0,
