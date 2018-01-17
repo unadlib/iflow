@@ -1,4 +1,4 @@
-# `addObserver` method
+# `addObserver` **Pipe**method
 
 ### Description
 State Change Post Notification middleware：

@@ -1,4 +1,4 @@
-# `addMiddleware` method
+# `addMiddleware` **Pipe**method
 
 ### Description
 State Change forward middleware：

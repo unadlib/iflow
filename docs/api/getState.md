@@ -7,17 +7,18 @@
 
 ### Usage
 ```javascript
-getState()
+getState(store)
 ```
 
 ### Arguments
-(*): none
+store(Array/Object): current store
 
 ### Returned value
-(Array/Object): returns the value of the path that needs to be taken
+(Array/Object): returns the state of the path that needs to be taken
 
 ### Examples
 ```javascript
+import iFlow,{ getState } from 'iflow'
 const pipe = iFlow({
   calculate: external(async function (number) {
     // do async something
@@ -28,7 +29,5 @@ const pipe = iFlow({
   },
 })
 const store = pipe.create()
-pipe.getState() // value: { counter: 0, foo: { bar: 88 } }
-store.__pipe__.getState() // value: { counter: 0, foo: { bar: 88 } }
-
+getState(store) // value: { counter: 0, foo: { bar: 88 } }
 ```

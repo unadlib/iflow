@@ -1,4 +1,4 @@
-# `create` method
+# `create` **Pipe**method
 
 ### Description
 `create` for pipe initialization and get store.

@@ -6,10 +6,11 @@
 
 ### Usage
 ```javascript
-get([path])
+get(store, [path])
 ```
 
 ### Arguments
+store(Object/Array): parent store
 path(String/Array): path that needs to be evaluated
 
 ### Returned value
@@ -17,6 +18,7 @@ path(String/Array): path that needs to be evaluated
 
 ### Examples
 ```javascript
+import iFlow,{ getStore } from 'iflow'
 const pipe = iFlow({
   calculate: external(async function (number) {
     // do async something
@@ -27,7 +29,5 @@ const pipe = iFlow({
   },
 })
 const store = pipe.create()
-pipe.get('counter') // value: 0
-store.__pipe__.get(['foo', 'bar']) // value: 88
-
+getStore(store, ['foo', 'bar']) // value: 88
 ```

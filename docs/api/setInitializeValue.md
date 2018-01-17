@@ -1,4 +1,4 @@
-# `setInitializeValue` method
+# `setInitializeValue` **Pipe**method
 
 ### Description
 Initialized middleware:

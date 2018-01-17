@@ -33,6 +33,6 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
-[Online](https://jsfiddle.net/unadlib/03ukqj5L/2/)
+[Online](https://jsfiddle.net/unadlib/03ukqj5L/4/)
 
 We'll refer to another Todo example later in this chapter.

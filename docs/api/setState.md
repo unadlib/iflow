@@ -11,13 +11,15 @@ setState([setValue])
 ```
 
 ### Arguments
-setValue (*): values that need to be set in batches
+store (Array/Object): store that need to be set in batches
+setValue (*): values that set in batches to store
 
 ### Returned value
-(*): none
+(Array/Object): current store that it has been set
 
 ### Examples
 ```javascript
+import iFlow, { setState, getState }  from 'iflow'
 const pipe = iFlow({
   counter: 0,
   foo: {
@@ -25,8 +27,8 @@ const pipe = iFlow({
   },
 })
 const store = pipe.create()
-const currentState = pipe.getState() // value: { counter: 0, foo: { bar: 88 } }
-store.__pipe__.setState({
+const currentState = getState(store) // value: { counter: 0, foo: { bar: 88 } }
+setState(store,{
   ...currentState,
   counter: 99
 }) // value: { counter: 99, foo: { bar: 88 } }

@@ -1,4 +1,4 @@
-# `middleware` method
+# `middleware` **Pipe**method
 
 ### Description
 `middleware` is the iFlow middleware group API, and corresponds to each type and middleware usage is completely equivalent.

@@ -1,4 +1,4 @@
-# `addInterceptor` method
+# `addInterceptor` **Pipe**method
 
 ### Description
 Action forward middleware:

@@ -6,10 +6,11 @@
 
 ### Usage
 ```javascript
-listen([path], (value) => {})
+listen(store, [path], (value) => {})
 ```
 
 ### Arguments
+store(Object/Array): parent store
 path(String/Array): path that needs to be get value
 callback(value(*)): listener callback function passes changed value
 
@@ -18,6 +19,7 @@ callback(value(*)): listener callback function passes changed value
 
 ### Examples
 ```javascript
+import iFlow,{ listen } from 'iflow'
 const pipe = iFlow({
   counter: 0,
   foo: {
@@ -28,7 +30,7 @@ const pipe = iFlow({
 })
 const store = pipe.create()
 store.counter = 1
-store.__pipe__.listen(['foo', 'bar'], (foobar) => {
+listen(store, ['foo', 'bar'], (foobar) => {
   console.log(foobar) // value: 99
 })
 store.foo.bar = 99

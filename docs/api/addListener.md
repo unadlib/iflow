@@ -1,4 +1,4 @@
-# `addListener` method
+# `addListener` **Pipe**method
 
 ### Description
 
