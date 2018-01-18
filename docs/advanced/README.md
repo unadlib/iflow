@@ -11,4 +11,4 @@ At the same time, the TODO examples on the previous chapters will continue to be
 * [Batch Update](/docs/advanced/BatchUpdate.md)
 * [Async Action](/docs/advanced/AsyncAction.md)
 * [Force Update](/docs/advanced/ForceUpdate.md)
-* [Examples: TODO With Undo/Redo](/docs/basics/Examples.md)
+* [Examples: TODO With Undo/Redo](/docs/advanced/Examples.md)
