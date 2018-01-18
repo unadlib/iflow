@@ -1,3 +1,5 @@
+import { getState, setState } from 'iflow'
+
 export default class Todo {
   constructor () {
     this.list = []
@@ -45,7 +47,7 @@ export default class Todo {
       const {
         list,
         // tabStatus
-      } = this['__pipe__'].getState()
+      } = getState(this)
       this.history.splice(this.index, this.history.length - this.index, {
         list,
         // tabStatus,
@@ -59,8 +61,8 @@ export default class Todo {
     const {
       list,
       // tabStatus
-    } = this.history[this.index - 1]['__pipe__'].getState()
-    this['__pipe__'].setState({
+    } = getState(this.history[this.index - 1])
+    setState(this, {
       list,
       // tabStatus
     })

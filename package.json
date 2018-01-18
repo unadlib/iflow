@@ -1,6 +1,6 @@
 {
   "name": "iflow",
-  "version": "1.0.0-alpha.35",
+  "version": "1.0.0-alpha.36",
   "description": "Concise & powerful state management framework for Javascript.",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
@@ -38,6 +38,11 @@
   "bugs": {
     "url": "https://github.com/unadlib/iflow/issues"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "_book"
+    ]
+  },
   "homepage": "https://github.com/unadlib/iflow#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -48,6 +53,11 @@
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.3",
     "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-anchors": "^0.7.1",
+    "gitbook-plugin-copy-code-button": "0.0.2",
+    "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-github": "^2.0.0",
+    "gitbook-plugin-github-buttons": "^3.0.0",
     "jest": "^22.0.4",
     "rimraf": "^2.6.2",
     "rollup": "^0.53.0",
@@ -55,12 +65,5 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
     "uglify-es": "^3.3.2"
-  },
-  "dependencies": {
-    "gitbook-plugin-anchors": "^0.7.1",
-    "gitbook-plugin-copy-code-button": "0.0.2",
-    "gitbook-plugin-edit-link": "^2.0.2",
-    "gitbook-plugin-github": "^2.0.0",
-    "gitbook-plugin-github-buttons": "^3.0.0"
   }
 }

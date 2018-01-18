@@ -1,4 +1,12 @@
-import iFlow, { batch, external } from '../lib'
+import iFlow, {
+  batch,
+  external,
+  predict,
+  getStore,
+  listen,
+  getState,
+  setState
+} from '../lib'
 
 /* global test, expect */
 
@@ -352,8 +360,7 @@ test('batch decorator test', () => {
   setTimeout(() => expect(store.batch.bb).toEqual(4))
 })
 
-
-let a,b
+let a, b
 const foo0 = iFlow({
   x: {
     e: 1
@@ -369,7 +376,7 @@ const bar0 = iFlow({
 }).create()
 
 test('cross store test', () => {
-  setTimeout(()=>{
+  setTimeout(() => {
     foo0.x.e = 99
     expect(a).toEqual(['x'])
     expect(b).toEqual(undefined)
@@ -377,21 +384,21 @@ test('cross store test', () => {
 })
 
 test('cross store test1', () => {
-  setTimeout(()=>{
+  setTimeout(() => {
     bar0.a.e = 9999
     expect(a).toEqual(['x'])
-    expect(b).toEqual(["a","e"])
+    expect(b).toEqual(['a', 'e'])
   })
 })
 
-let test1foo,test1fooC
+let test1foo, test1fooC
 const text1c = iFlow({
   x: {
     c: {
-      v:1
+      v: 1
     }
   }
-}).addObserver((...args)=>{
+}).addObserver((...args) => {
   test1fooC = args.slice(1, -3)
 })
 
@@ -399,51 +406,128 @@ text1c.create()
 
 const test1 = iFlow(new class {
   x = text1c
-}).addObserver((...args)=>{
+}).addObserver((...args) => {
   test1foo = args.slice(1, -3)
 }).create()
 
 test('share pipe1', () => {
   test1.x.x.c.v = 11
-  expect(test1fooC).toEqual(['x','c'])
-  expect(test1foo).toEqual(['x','x','c'])
+  expect(test1fooC).toEqual(['x', 'c'])
+  expect(test1foo).toEqual(['x', 'x', 'c'])
 })
-
 
 let store11sub, store11a
 const store11 = iFlow({
   a: {
-    b:{
-      v:1
+    b: {
+      v: 1
     },
-    k:{
-      v:1
+    k: {
+      v: 1
     }
   }
-}).addObserver((...args)=>{
+}).addObserver((...args) => {
   store11sub = args.slice(1, -3)
 }).create()
 
 const store11A = iFlow({
   a: store11
-}).addObserver((...args)=>{
+}).addObserver((...args) => {
   store11a = args.slice(1, -3)
 }).create()
 
 test('share store0', () => {
   store11.a.b.v = 19
-  expect(store11sub).toEqual(['a','b'])
-  expect(store11a).toEqual(['a','a','b'])
+  expect(store11sub).toEqual(['a', 'b'])
+  expect(store11a).toEqual(['a', 'a', 'b'])
 })
 
 test('share store1', () => {
-  setTimeout(()=>{
+  setTimeout(() => {
     store11A.a.a.k.v = 19
-    expect(store11sub).toEqual(['a','k'])
-    expect(store11a).toEqual(['a','a','k'])
+    expect(store11sub).toEqual(['a', 'k'])
+    expect(store11a).toEqual(['a', 'a', 'k'])
   })
 })
 
+const store111 = iFlow({
+  e: 1,
+  a: {
+    b: 1,
+    c: [{
+      e: {
+        f: 1
+      },
+      t () {
+
+      }
+    }]
+  }
+}).create()
+
+test('test getStore', () => {
+  expect(getStore(store111, 'a')).toEqual(store111.a)
+  expect(getStore(store111, ['a', 'c', '0', 'e'])).toEqual(store111.a.c[0].e)
+})
+
+test('test listen', () => {
+  listen(store111, 'e', (value) => {
+    expect(value).toEqual(10)
+  })
+  store111.e = 10
+  listen(store111, ['a', 'c', '0', 'e', 'f'], (value) => {
+    expect(value).toEqual(11)
+  })
+  store111.a.c[0].e = {f: 11}
+})
+
+test('test getState', () => {
+  expect(getState(store111.a.c[0])).toEqual({
+    e: {
+      f: 11
+    }
+  })
+})
+
+test('test setState', () => {
+  setState(store111.a.c, [{
+    e: {
+      f: 1211
+    }
+  }])
+  expect(getState(store111.a.c)).toEqual([{
+    e: {
+      f: 1211
+    }
+  }])
+})
+
+
+const predictStore910 = iFlow({
+  k: {
+    c: 1,
+    a: [{
+      s:1
+    },{
+      s:1
+    }]
+  },
+  a: {
+    b: 1,
+  }
+}).create()
+
+const predict1 = predict(predictStore910)
+
+test('test predict', () => {
+  predictStore910.k.c = 100
+  expect(predict1.a).toEqual(predict(predictStore910).a)
+  expect(predict1.k).not.toEqual(predict(predictStore910).k)
+  predictStore910.k.a[0].s = 100
+  expect(predict1.k.a[1]).toEqual(predict(predictStore910).k.a[1])
+  expect(predict1.k.a[0]).not.toEqual(predict(predictStore910).k.a[0])
+})
+// predict
 
 
 

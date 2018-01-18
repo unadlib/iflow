@@ -43,4 +43,4 @@ const pipe = iFlow({
 const store = pipe.create()
 ```
 
-[Online](https://jsfiddle.net/unadlib/6wabhdqp/3/)
+[Online](https://jsfiddle.net/unadlib/6wabhdqp/)

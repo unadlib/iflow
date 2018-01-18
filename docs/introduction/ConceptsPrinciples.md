@@ -1,6 +1,6 @@
 # Concepts Principles
 
->After using some state management libraries or containers, I always feel that there should be a new state management library, although it is a mutable structure, but it should be able to maintain the state of the original data type, it also supports immutable, while taking into account mutable for programming and operation, And it should be incremental, not disruptive to programming fun because of too much cumbersome operations, such as deconstruction spread Operator, and other complex concepts.
+>After using some state management libraries or containers, I always feel that there should be a new state management library, although it is a mutable structure, but it should be able to maintain the state of the original data type, it also supports immutable and predictable, while taking into account mutable for programming and operation, And it should be incremental, not disruptive to programming fun because of too much cumbersome operations, such as deconstruction spread Operator, and other complex concepts.
   
 Therefore, iFlow attempts to build a new state management library based on **paths match** using Proxy & Reflect of ECMAScript 2015. What needs to be specifically stated is that the **iFlow definition store is comprised of actions and state**.
 

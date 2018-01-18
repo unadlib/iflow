@@ -2031,6 +2031,10 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
+hoist-non-react-statics@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -2108,9 +2112,9 @@ ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
-iflow@^1.0.0-alpha.30:
-  version "1.0.0-alpha.30"
-  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.30.tgz#f46418424ce9f13d3d3ea62aef8d01665f3cc761"
+iflow@^1.0.0-alpha.35, iflow@^1.0.0-alpha.36:
+  version "1.0.0-alpha.36"
+  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.36.tgz#1dd9ee58035c6d7d64d1f89294aea6d7813d371d"
 
 import-local@^0.1.1:
   version "0.1.1"
@@ -3122,10 +3126,12 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-iflow@^1.0.0-alpha.22:
-  version "1.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/react-iflow/-/react-iflow-1.0.0-alpha.22.tgz#12626381d6a50bf00448d5219ca0a21d203122ee"
+react-iflow@^1.0.0-alpha.24:
+  version "1.0.0-alpha.24"
+  resolved "https://registry.yarnpkg.com/react-iflow/-/react-iflow-1.0.0-alpha.24.tgz#3825b81c928cd8ea950eacc2cc0009f7fd7f4f39"
   dependencies:
+    hoist-non-react-statics "^2.3.1"
+    iflow "^1.0.0-alpha.35"
     prop-types "^15.6.0"
     react "^16.2.0"
 

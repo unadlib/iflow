@@ -70,6 +70,8 @@ It allows developers with rich requirements to develop various intermediary plug
 Todo example we can add debugging middleware to it, and for adding the Undo/Redo function needs of the record State middleware.
 
 ```javascript
+import iFlow, { getState, setState } from 'iflow'
+
 const pipe = iFlow({
   //deliberately omit state and actions for demo.
   history: [{
@@ -85,7 +87,7 @@ const pipe = iFlow({
       ].includes(actionName)) {
       const {
         list,
-      } = this['__pipe__'].getState()
+      } = getState(this)
       this.history.splice(this.index, this.history.length - this.index, {
         list,
       })
@@ -96,15 +98,15 @@ const pipe = iFlow({
     this.index += index
     const {
       list,
-    } = this.history[this.index - 1]['__pipe__'].getState()
-    this['__pipe__'].setState({
+    } = getState(this.history[this.index - 1])
+    setState(this, {
       list,
     })
   }
 }).addObserver(() => {
   console.log(`log change store:`, pipe.getState())
 }).addListener((...args) => {
-  const actionName = args.slice(-2, -1)[0]
+  const [actionName] = args.slice(-2, -1)
   actionName !== 'record' && store.record(actionName)
 })
 

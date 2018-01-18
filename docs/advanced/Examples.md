@@ -3,7 +3,8 @@
 The "Undo/Redo" Todo complete code discussed in this chapter is as follows:
 
 ```javascript
-import iFlow from 'iflow'
+import iFlow, { getState, setState } from 'iflow'
+
 const pipe = iFlow({
   todo: [],
   tabStatus: 'All',
@@ -51,7 +52,7 @@ const pipe = iFlow({
       ].includes(actionName)) {
       const {
         list,
-      } = this['__pipe__'].getState()
+      } = getState(this)
       this.history.splice(this.index, this.history.length - this.index, {
         list,
       })
@@ -62,17 +63,17 @@ const pipe = iFlow({
     this.index += index
     const {
       list,
-    } = this.history[this.index - 1]['__pipe__'].getState()
-    this['__pipe__'].setState({
+    } = getState(this.history[this.index - 1])
+    setState(this, {
       list,
     })
   }
 }).addListener((...args) => {
-    const actionName = args.slice(-2, -1)[0]
+    const [actionName] = args.slice(-2, -1)
     actionName !== 'record' && store.record(actionName)
   })
 
 const store = pipe.create()
 ```
 
-[Online](https://jsfiddle.net/unadlib/6wabhdqp/3/)
+[Online](https://jsfiddle.net/unadlib/6wabhdqp/)

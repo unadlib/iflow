@@ -1,11 +1,12 @@
 # <a href='http://iflow.js.org'><img src='https://raw.githubusercontent.com/unadlib/iflow/master/assets/logo.png' height='60' alt='iFlow Logo' aria-label='iflow.js.org' /></a>
-iFlow is a concise & powerful state management framework.
+iFlow is a concise & powerful state management framework, iFlow has no any dependence and it's very small(5k).
 
 [![Travis](https://img.shields.io/travis/unadlib/iflow.svg)](https://travis-ci.org/unadlib/iflow)
 [![Coverage Status](https://coveralls.io/repos/github/unadlib/iflow/badge.svg?branch=master)](https://coveralls.io/github/unadlib/iflow?branch=master)
 [![npm](https://img.shields.io/npm/v/iflow.svg)](https://www.npmjs.com/package/iflow)
 [![Join the chat at https://gitter.im/unadlib/iflow](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/unadlib/iflow?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+>[Implement simple todo in five minutes](https://github.com/unadlib/iflow#implement-simple-todo-in-five-minutes)
 
 It's dynamic and extensible, you can directly use it to add, delete and reassign the state/action. It completely supports plain class and function based on **mutable data structures**, and be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
 
@@ -27,6 +28,7 @@ It's dynamic and extensible, you can directly use it to add, delete and reassign
     * Action
     * Data flow
 * [Gist](https://github.com/unadlib/iflow#gist)
+* [Implement simple todo in five minutes](https://github.com/unadlib/iflow#implement-simple-todo-in-five-minutes)
 * [Examples](https://github.com/unadlib/iflow#examples)
 * [API Reference](https://github.com/unadlib/iflow#api-reference)
 * [How it works](https://github.com/unadlib/iflow#how-it-works)
@@ -101,10 +103,67 @@ pipe.addObserver((store) => {
 const store = pipe.create({counter: 1})
 store.calculate(1)
 ```
+### Implement simple todo in five minutes
+
+1.First we finish quickly a TODO project configuration and basic NPM package dependencies.
+
+```bash
+mkdir example && cd example
+yarn init -y
+yarn add -D parcel-bundler babel-cli babel-preset-react babel-preset-env
+yarn add react react-dom iflow react-iflow
+```
+
+2.Then we complete a Babel configuration file and an app portal file index.html
+
+```bash
+echo '{"presets": ["env","react"]}' > .babelrc
+echo '<div id="app"></div><script src="./index.js"></script>' > index.html
+```
+
+3.And then we complete a simple TODO
+
+```bash
+cat <<EOF > index.js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import iFlow from 'iflow'
+import flow from 'react-iflow'
+
+const store = iFlow({
+    todo: [],
+    add(text){this.todo.push({text})},
+    toggle(item){item.completed = !item.completed}
+}).create()
+
+const App = flow(store)(class extends React.Component {
+    render() {
+        const {todo,add,toggle} = this.props.store
+        return (
+            <div>
+                <input ref={(ref)=>this.input=ref}/>
+                <button onClick={()=>{add(this.input.value);this.input.value=''}}>Add</button>
+                <ul>
+                    {todo.map((item,key)=>(<li key={key} style={item.completed?{textDecoration:'line-through'}:{}} onClick={()=>toggle(item)}>{item.text}</li>))}
+                </ul> 
+            </div>
+        )
+    }
+})
+
+ReactDOM.render(<App/>,document.getElementById('app'))
+EOF
+```
+
+4.Finally we run up, hey!🎉🎉🎉
+
+```bash
+npx parcel index.html
+```
 
 ### Examples
-* [Counter](https://github.com/unadlib/iflow/tree/master/examples/counter)([Online](https://jsfiddle.net/unadlib/03ukqj5L/4/))
-* [TODO](https://github.com/unadlib/iflow/tree/master/examples/todo)([Online](https://jsfiddle.net/unadlib/6wabhdqp/3/))
+* [Counter](https://github.com/unadlib/iflow/tree/master/examples/counter)([Online](https://jsfiddle.net/unadlib/03ukqj5L/))
+* [TODO](https://github.com/unadlib/iflow/tree/master/examples/todo)([Online](https://jsfiddle.net/unadlib/6wabhdqp/))
 
 ### API Reference
 * iFlow
