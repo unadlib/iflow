@@ -1,5 +1,5 @@
 # <a href='http://iflow.js.org'><img src='https://raw.githubusercontent.com/unadlib/iflow/master/assets/logo.png' height='60' alt='iFlow Logo' aria-label='iflow.js.org' /></a>
-iFlow is a concise & powerful state management framework, iFlow has no any dependence and it's very small(5k).
+iFlow is a concise & powerful state management framework, iFlow has no dependencies and it's very small(5k).
 
 [![Travis](https://img.shields.io/travis/unadlib/iflow.svg)](https://travis-ci.org/unadlib/iflow)
 [![Coverage Status](https://coveralls.io/repos/github/unadlib/iflow/badge.svg?branch=master)](https://coveralls.io/github/unadlib/iflow?branch=master)
