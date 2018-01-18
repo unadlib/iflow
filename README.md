@@ -297,7 +297,7 @@ When using a web framework such as react, the corresponding connection library [
 
 * **Powerful middleware**
 
-If necessary, in fact iFlow's middleware is powerful and useful, and you can use it to implement a variety of coupled business codes.
+If necessary, in fact iFlow's middleware is powerful and useful, and you can use it to implement a variety of coupled codes.
 
 * **Composable and scalable store**
 
