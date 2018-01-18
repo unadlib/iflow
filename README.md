@@ -297,7 +297,7 @@ When using a web framework such as react, the corresponding connection library [
 
 * **Powerful middleware**
 
-If necessary, in fact iflow is powerful and useful, and you can use it to implement a variety of coupled business codes.
+If necessary, in fact iFlow's middleware is powerful and useful, and you can use it to implement a variety of coupled business codes.
 
 * **Composable and scalable store**
 
@@ -305,7 +305,7 @@ iFlow advocates the store group to synthesize the store tree without worrying ab
 
 ### Limitations and pitfalls
 
-* [Unable to automate batch update within dispatcher](https://github.com/unadlib/iflow/issues/3)
+* [No scheduler updates within automatic batch processing](https://github.com/unadlib/iflow/issues/3)
 
 For the action of a normal synchronization process, the merge problem with the same state being changed multiple times is ignored and we will fix it.
 
