@@ -1,6 +1,6 @@
 # Limitations Pitfalls
 
-* [Unable to automate batch update within dispatcher](https://github.com/unadlib/iflow/issues/3)
+* [No scheduler updates within automatic batch processing](https://github.com/unadlib/iflow/issues/3)
 
 For the action of a normal synchronization process, the merge problem with the same state being changed multiple times is ignored and we will fix it.
 
