@@ -18,7 +18,7 @@
     * [Batch Update](/docs/advanced/BatchUpdate.md)
     * [Async Action](/docs/advanced/AsyncAction.md)
     * [Force Update](/docs/advanced/ForceUpdate.md)
-    * [Examples: TODO With Undo/Redo](/docs/basics/Examples.md)
+    * [Examples: TODO With Undo/Redo](/docs/advanced/Examples.md)
 * [API](/docs/api/README.md)
     * [iFlow](/docs/api/iFlow.md)
         * [create](/docs/api/create.md)
