@@ -156,11 +156,19 @@ const pipe = iFlow({
     },
     counter: 0,
   },
-  initValue: 0
+  initValue: 0,
+  initValue1: [{
+    a: 1,
+  }]
 }).middleware({
   init: (...args) => {
     return {
-      initValue: 666
+      initValue: 666,
+      initValue1: [{
+        a: 11111,
+      },
+        1,
+        2]
     }
   },
   start: (...args) => {
@@ -289,6 +297,13 @@ test('getter & setter', () => {
 
 test('init', () => {
   expect(store.initValue).toBe(666)
+  expect(store.initValue1).toEqual([
+    {
+      a: 11111,
+    },
+    1,
+    2
+  ])
 })
 
 test('init middleware', () => {
@@ -400,9 +415,7 @@ const text1c = iFlow({
   }
 }).addObserver((...args) => {
   test1fooC = args.slice(1, -3)
-})
-
-text1c.create()
+}).create()
 
 const test1 = iFlow(new class {
   x = text1c
@@ -410,7 +423,7 @@ const test1 = iFlow(new class {
   test1foo = args.slice(1, -3)
 }).create()
 
-test('share pipe1', () => {
+test('share store1', () => {
   test1.x.x.c.v = 11
   expect(test1fooC).toEqual(['x', 'c'])
   expect(test1foo).toEqual(['x', 'x', 'c'])
@@ -502,14 +515,13 @@ test('test setState', () => {
   }])
 })
 
-
 const predictStore910 = iFlow({
   k: {
     c: 1,
     a: [{
-      s:1
-    },{
-      s:1
+      s: 1
+    }, {
+      s: 1
     }]
   },
   a: {
@@ -528,6 +540,186 @@ test('test predict', () => {
   expect(predict1.k.a[0]).not.toEqual(predict(predictStore910).k.a[0])
 })
 // predict
+test('test cross root store', () => {
+  let change_a, change_c, change_store
+  const a = iFlow({
+    x: {
+      e: 1,
+    },
+  }).middleware({
+    after (...args) {
+      change_a = args
+    }
+  }).create()
+
+  const c = iFlow({
+    x: {
+      a,
+    },
+  }).middleware({
+    after (...args) {
+      change_c = args
+    }
+  }).create()
+
+  const store = iFlow({
+    e1111: {
+      a,
+    },
+  }).middleware({
+    after (...args) {
+      change_store = args
+    }
+  }).create()
+  store.e1111.a.x.e = 1999
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 1999])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 1999])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 1999])
+  a.x.e = 19991
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 19991])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 19991])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 19991])
+  c.x.a.x.e = 199921
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 199921])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 199921])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 199921])
+})
+
+test('test cross root pipe', () => {
+  let change_a, change_c, change_store
+  const a = iFlow({
+    x: {
+      e: 1,
+    },
+  }).middleware({
+    after (...args) {
+      change_a = args
+    }
+  }).create()
+
+  const c = iFlow({
+    x: {
+      a: iFlow(a),
+    },
+  }).middleware({
+    after (...args) {
+      change_c = args
+    }
+  }).create()
+
+  const store = iFlow({
+    e1111: {
+      a: iFlow(a),
+    },
+  }).middleware({
+    after (...args) {
+      change_store = args
+    }
+  }).create()
+  store.e1111.a.x.e = 11999
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 11999])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 11999])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 11999])
+  a.x.e = 119991
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 119991])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 119991])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 119991])
+  c.x.a.x.e = 1199921
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 1199921])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 1199921])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 1199921])
+})
+
+test('test cross root store', () => {
+  let change_a, change_c, change_store
+  const a = iFlow({
+    x: {
+      e: 1,
+    },
+  }).middleware({
+    after (...args) {
+      change_a = args
+    }
+  }).create()
+
+  const c = iFlow({
+    x: {
+      a,
+    },
+  }).middleware({
+    after (...args) {
+      change_c = args
+    }
+  }).create()
+
+  const store = iFlow({
+    e1111: {
+      a: c.x.a,
+    },
+  }).middleware({
+    after (...args) {
+      change_store = args
+    }
+  }).create()
+  store.e1111.a.x.e = 1999
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 1999])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 1999])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 1999])
+  a.x.e = 19991
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 19991])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 19991])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 19991])
+  c.x.a.x.e = 199921
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 199921])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 199921])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a', 'x', 'e', 199921])
+})
+
+test('test cross root store', () => {
+  let change_a, change_c, change_store
+  const a = iFlow({
+    x: {
+      e: 1,
+    },
+  }).middleware({
+    after (...args) {
+      change_a = args
+    }
+  }).create()
+
+  const c = iFlow({
+    x: {
+      a,
+    },
+  }).middleware({
+    after (...args) {
+      change_c = args
+    }
+  }).create()
+
+  const store = iFlow({
+    e1111: {
+      a: c,
+    },
+  }).middleware({
+    after (...args) {
+      change_store = args
+    }
+  }).create()
+  store.e1111.a.x.a.x.e = 1999
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 1999])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 1999])
+  expect(change_store.slice(1, -1)).toEqual(['e1111','a', 'x', 'a', 'x', 'e', 1999])
+  a.x.e = 19991
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 19991])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 19991])
+  expect(change_store.slice(1, -1)).toEqual(['e1111','a', 'x', 'a', 'x', 'e', 19991])
+  c.x.a.x.e = 199921
+  expect(change_a.slice(1, -1)).toEqual(['x', 'e', 199921])
+  expect(change_c.slice(1, -1)).toEqual(['x', 'a', 'x', 'e', 199921])
+  expect(change_store.slice(1, -1)).toEqual(['e1111', 'a','x', 'a', 'x', 'e', 199921])
+})
+
 
 
 

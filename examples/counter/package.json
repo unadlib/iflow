@@ -22,9 +22,9 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
-    "iflow": "^1.0.0-alpha.36",
+    "iflow": "^1.0.0-alpha.37",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-iflow": "^1.0.0-alpha.24"
+    "react-iflow": "^1.0.0-alpha.25"
   }
 }
