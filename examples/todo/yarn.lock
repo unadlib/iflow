@@ -2104,13 +2104,9 @@ ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
-iflow@^1.0.0-alpha.35:
-  version "1.0.0-alpha.36"
-  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.36.tgz#1dd9ee58035c6d7d64d1f89294aea6d7813d371d"
-
-iflow@^1.0.0-alpha.37:
-  version "1.0.0-alpha.37"
-  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.37.tgz#540eaf9074729879f76c345a30ea0cc34315ba66"
+iflow@^1.0.0-alpha.38:
+  version "1.0.0-alpha.38"
+  resolved "https://registry.yarnpkg.com/iflow/-/iflow-1.0.0-alpha.38.tgz#298055b903c691696efbfcb6f6e9b8b6188a5455"
 
 import-local@^0.1.1:
   version "0.1.1"
@@ -3122,12 +3118,12 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-iflow@^1.0.0-alpha.25:
-  version "1.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/react-iflow/-/react-iflow-1.0.0-alpha.25.tgz#898833bb86757408fb242456d1edc782354c63b0"
+react-iflow@^1.0.0-alpha.26:
+  version "1.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/react-iflow/-/react-iflow-1.0.0-alpha.26.tgz#85f42c7307a4eb05a63177a6ba8088d6e252dad9"
   dependencies:
     hoist-non-react-statics "^2.3.1"
-    iflow "^1.0.0-alpha.35"
+    iflow "^1.0.0-alpha.38"
     prop-types "^15.6.0"
     react "^16.2.0"
 
