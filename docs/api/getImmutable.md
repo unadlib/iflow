@@ -1,22 +1,22 @@
-# `predict` method
+# `getImmutable` method
 
 ### Description
-`predict` is used to get a predictable store under the current pipe node for control and contrast before and after value updates and comparisons, such as for React `PureComponent` or `shouldComponentUpdate`.
+`getImmutable` is used to get a immutable store under the current pipe node for control and contrast before and after value updates and comparisons, such as for React `PureComponent` or `shouldComponentUpdate`.
  
 ### Usage
 ```javascript
-predict(store)
+getImmutable(store)
 ```
 
 ### Arguments
 store(Object/Array): current store
 
 ### Returned value
-(*): Return to the current predictable store
+(*): Return to the current immutable store
 
 ### Examples
 ```javascript
-import iFlow,{ predict } from 'iflow'
+import iFlow,{ getImmutable } from 'iflow'
 import flow from 'react-iflow'
 
 const pipe = iFlow({
@@ -36,7 +36,7 @@ class Foobar extends Component {
   render(){
     console.log(this.props.store)
     return (
-      <Sub store={predict(this.props.store.foo)}/>
+      <Sub store={getImmutable(this.props.store.foo)}/>
     )
   }
 }

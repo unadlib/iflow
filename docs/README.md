@@ -28,7 +28,7 @@
         * [addMiddleware](/docs/api/addMiddleware.md)
         * [addObserver](/docs/api/addObserver.md)
         * [addListener](/docs/api/addListener.md)
-    * [predict](/docs/api/predict.md)
+    * [getImmutable](/docs/api/getImmutable.md)
     * [listen](/docs/api/listen.md)
     * [getStore](/docs/api/getStore.md)
     * [getState](/docs/api/getState.md)

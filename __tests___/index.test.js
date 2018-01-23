@@ -1,7 +1,7 @@
 import iFlow, {
   batch,
   external,
-  predict,
+  getImmutable,
   getStore,
   listen,
   getState,
@@ -161,7 +161,7 @@ const pipe = iFlow({
     a: 1,
   }]
 }).middleware({
-  init: (...args) => {
+  stateWillInitialize: (...args) => {
     return {
       initValue: 666,
       initValue1: [{
@@ -171,49 +171,49 @@ const pipe = iFlow({
         2]
     }
   },
-  start: (...args) => {
+  actionWillStart: (...args) => {
     if (args.slice(-3, -2)[0] === testFn) {
       testFnResultProcess = args.slice(-1)[0][0] + 1
       return [testFnResultProcess]
     }
   },
-  before: (...args) => {
+  stateWillChange: (...args) => {
     if (args.slice(-3, -2)[0] === 'testAddField') {
       return args.slice(-2, -1)[0] + 1
     }
   },
-  after: (...args) => {
+  stateDidChange: (...args) => {
     if (args.slice(-3, -2)[0] === 'testAddFieldAfter') {
       testAddFieldAfter = args.slice(-2, -1)[0]
     }
   },
-  end: (...args) => {
+  actionDidEnd: (...args) => {
     if (args.slice(-2, -1)[0] === testFn) {
       testFnResultEnd = args.slice(-1)[0].testResult + 1
     }
   },
 }).middleware({
-  init: (...args) => {
+  stateWillInitialize: (...args) => {
     next = args[0].initValue
   },
-  start: async (...args) => {
+  actionWillStart: async (...args) => {
     if (args.slice(-3, -2)[0] === testAsyncFn) {
       await sleep(2000)
       testAsyncResultProcess = (await args.slice(-1)[0])[0] + 1
       return [testAsyncResultProcess]
     }
   },
-  before: (...args) => {
+  stateWillChange: (...args) => {
     if (args.slice(-3, -2)[0] === 'testAddField') {
       return args.slice(-2, -1)[0] + 1
     }
   },
-  after: (...args) => {
+  stateDidChange: (...args) => {
     if (args.slice(-3, -2)[0] === 'testAddFieldAfter') {
       testAddFieldAfter += 1
     }
   },
-  end: async (...args) => {
+  actionDidEnd: async (...args) => {
     if (args.slice(-2, -1)[0] === testAsyncFn) {
       await sleep(2000)
       testAsyncResultEnd = args.slice(-1)[0].testAsyncResult
@@ -515,7 +515,7 @@ test('test setState', () => {
   }])
 })
 
-const predictStore910 = iFlow({
+const getImmutableStore910 = iFlow({
   k: {
     c: 1,
     a: [{
@@ -529,17 +529,17 @@ const predictStore910 = iFlow({
   }
 }).create()
 
-const predict1 = predict(predictStore910)
+const getImmutable1 = getImmutable(getImmutableStore910)
 
-test('test predict', () => {
-  predictStore910.k.c = 100
-  expect(predict1.a).toEqual(predict(predictStore910).a)
-  expect(predict1.k).not.toEqual(predict(predictStore910).k)
-  predictStore910.k.a[0].s = 100
-  expect(predict1.k.a[1]).toEqual(predict(predictStore910).k.a[1])
-  expect(predict1.k.a[0]).not.toEqual(predict(predictStore910).k.a[0])
+test('test getImmutable', () => {
+  getImmutableStore910.k.c = 100
+  expect(getImmutable1.a).toEqual(getImmutable(getImmutableStore910).a)
+  expect(getImmutable1.k).not.toEqual(getImmutable(getImmutableStore910).k)
+  getImmutableStore910.k.a[0].s = 100
+  expect(getImmutable1.k.a[1]).toEqual(getImmutable(getImmutableStore910).k.a[1])
+  expect(getImmutable1.k.a[0]).not.toEqual(getImmutable(getImmutableStore910).k.a[0])
 })
-// predict
+// getImmutable
 test('test cross root store', () => {
   let change_a, change_c, change_store
   const a = iFlow({
@@ -547,7 +547,7 @@ test('test cross root store', () => {
       e: 1,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_a = args
     }
   }).create()
@@ -557,7 +557,7 @@ test('test cross root store', () => {
       a,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_c = args
     }
   }).create()
@@ -567,7 +567,7 @@ test('test cross root store', () => {
       a,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_store = args
     }
   }).create()
@@ -592,7 +592,7 @@ test('test cross root pipe', () => {
       e: 1,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_a = args
     }
   }).create()
@@ -602,7 +602,7 @@ test('test cross root pipe', () => {
       a: iFlow(a),
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_c = args
     }
   }).create()
@@ -612,7 +612,7 @@ test('test cross root pipe', () => {
       a: iFlow(a),
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_store = args
     }
   }).create()
@@ -637,7 +637,7 @@ test('test cross root store', () => {
       e: 1,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_a = args
     }
   }).create()
@@ -647,7 +647,7 @@ test('test cross root store', () => {
       a,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_c = args
     }
   }).create()
@@ -657,7 +657,7 @@ test('test cross root store', () => {
       a: c.x.a,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_store = args
     }
   }).create()
@@ -682,7 +682,7 @@ test('test cross root store', () => {
       e: 1,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_a = args
     }
   }).create()
@@ -692,7 +692,7 @@ test('test cross root store', () => {
       a,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_c = args
     }
   }).create()
@@ -702,7 +702,7 @@ test('test cross root store', () => {
       a: c,
     },
   }).middleware({
-    after (...args) {
+    stateDidChange (...args) {
       change_store = args
     }
   }).create()

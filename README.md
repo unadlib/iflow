@@ -16,7 +16,7 @@ It's dynamic and extensible, you can directly use it to add, delete and reassign
 * **⚡Dynamic and hot-swapping** - Both the temporary state and action can be directly and freely changed.
 * **💥Async function and others type functions** - Any actions will be composed or invoked internal.
 * **🚀Powerful middleware** - Middleware can handle the store any change event.
-* **🔥Store support predictability** - Store is supported to be processed into a store with predictability.
+* **🔥Store support immutable** - Store is supported to be processed into a immutable store.
 
 > [Documents](https://iflow.js.org/) / [中文文档](http://cn.iflow.js.org/) 
 
@@ -201,11 +201,11 @@ const pipe = iFlow([])
 >The Middleware API will Listen to the store any change, and modify it.
 ```javascript
 pipe.middleware({
-  init: (...args) => {},
-  start: (...args) => {},
-  before: (...args) => {},
-  after: (...args) => {},
-  end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
 })
 ```
 
@@ -213,11 +213,11 @@ pipe.middleware({
 
 | APIs    | Direct API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
-| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized                |
-| start       | addInterceptor      | ✅     | action parameters    | ✅     | Action forward |
-| before      | addMiddleware       | ✅     | a setter value       | ❌     | State Change forward|
-| after       | addObserver         | ❌     | -                  | ❌     | State Change Notification   | 
-| end         | addListener         | ❌     | -                  | ✅     | Action Notification |
+| stateWillInitialize        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized                |
+| actionWillStart       | addInterceptor      | ✅     | action parameters    | ✅     | Action forward |
+| stateWillChange      | addMiddleware       | ✅     | a setter value       | ❌     | State Change forward|
+| stateDidChange       | addObserver         | ❌     | -                  | ❌     | State Change Notification   | 
+| actionDidEnd         | addListener         | ❌     | -                  | ✅     | Action Notification |
 
 * create()
 >Every pipe will be created with initial value or without.
@@ -324,10 +324,10 @@ Currently known unsupported types are: `Set` / `WeakSet` / `Map` / `WeakMap`, an
 | Browsers          |  Chrome    | IE    | Edge  | FireFox  | Safari  | Opera   | Node    |
 | :---------------- | :--------: | :---: | :---: | :------: | :-----: | :-----: | :------: |
 | Supported         | ✅         |  ❌   |  ✅    |  ✅      |  ✅     |  ✅     |  ✅     |
-| Supported version |   49+      |  -    |  12+  |  18+     |  10+    |  36+    |  6.4.0+ |
+| Version           |   49+      |  -    |  12+  |  18+     |  10+    |  36+    |  6.4.0+ |
 
 ### Change Log
-* Completed predictable store
+* Completed immutable store
 * Completed alpha version
 ### License
 

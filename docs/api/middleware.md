@@ -8,57 +8,57 @@
 
 | Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
-| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | initialized middleware                |
-| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
-| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
-| after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
-| end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
+| stateWillInitialize        | setInitializeValue  | ✅     | add initialized values    | ❌     | initialized middleware                |
+| actionWillStart       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
+| stateWillChange      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
+| stateDidChange       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
+| actionDidEnd         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
 
 ### Usage
 
 ```javascript
 pipe.middleware({
-  init: (...args) => {},
-  start: (...args) => {},
-  before: (...args) => {},
-  after: (...args) => {},
-  end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
 })
 ```
 
 ```javascript
 pipe.middleware(
   {
-    init: (...args) => {},
-    start: (...args) => {},
-    before: (...args) => {},
-    after: (...args) => {},
-    end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
   },
   {
-    init: (...args) => {},
-    start: (...args) => {},
-    before: (...args) => {},
-    after: (...args) => {},
-    end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
   })
 ```
 
 ```javascript
 pipe
 .middleware({
-    init: (...args) => {},
-    start: (...args) => {},
-    before: (...args) => {},
-    after: (...args) => {},
-    end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
 })
 .middleware({
-    init: (...args) => {},
-    start: (...args) => {},
-    before: (...args) => {},
-    after: (...args) => {},
-    end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
 })
 ```
 

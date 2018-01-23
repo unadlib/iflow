@@ -1,6 +1,6 @@
 # Middleware
 
-iFlow provides several different types of middleware for controlling action and state changes under different processes, including [`middleware`](/docs/api/middleware.md), which is the standard middleware API, It contains all the five types of middleware `init`/`start`/`before`/`after`/`end `that can be used, supporting the addition of several different types of middleware, and the added middleware of the same type is ordered.
+iFlow provides several different types of middleware for controlling action and state changes under different processes, including [`middleware`](/docs/api/middleware.md), which is the standard middleware API, It contains all the five types of middleware `stateWillInitialize`/`actionWillStart`/`stateWillChange`/`stateDidChange`/`actionDidEnd `that can be used, supporting the addition of several different types of middleware, and the added middleware of the same type is ordered.
 
 ```javascript
 import iFlow from 'iflow'
@@ -8,11 +8,11 @@ import iFlow from 'iflow'
 const pipe = iFlow({
   //deliberately omit state and actions for demo.
 }).middleware({
-    init: (...args) => {},
-    start: (...args) => {},
-    before: (...args) => {},
-    after: (...args) => {},
-    end: (...args) => {},
+    stateWillInitialize: (...args) => {},
+    actionWillStart: (...args) => {},
+    stateWillChange: (...args) => {},
+    stateDidChange: (...args) => {},
+    actionDidEnd: (...args) => {},
 })
 
 const store = pipe.create()
@@ -24,11 +24,11 @@ If you only need to quickly add a single type of middleware, iFlow allows you to
 
 | Middleware APIs    | Direct Interface API  | return | return value       | Async  | Description                       |
 | :---------- | :-----------------: | :----: | :----------------: | :---: | ------------------------: | 
-| init        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized middleware                |
-| start       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
-| before      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
-| after       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
-| end         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
+| stateWillInitialize        | setInitializeValue  | ✅     | add initialized values    | ❌     | Initialized middleware                |
+| actionWillStart       | addInterceptor      | ✅     | change the action parameter    | ✅     | Action forward middleware             |
+| stateWillChange      | addMiddleware       | ✅     | change the value of a Setter       | ❌     | State Change forward middleware   |
+| stateDidChange       | addObserver         | ❌     | -                  | ❌     | State Change Post Notification middleware   | 
+| actionDidEnd         | addListener         | ❌     | -                  | ✅     | Action Post Notification middleware         |
 
 The API for standard middleware and the API usage of the direct middleware interface are equivalent, for example:
 
@@ -38,7 +38,7 @@ import iFlow from 'iflow'
 const pipe = iFlow({
   //deliberately omit state and actions for demo.
 }).middleware({
-    start: (...args) => {
+    actionWillStart: (...args) => {
       // start middleware
     }
 })
