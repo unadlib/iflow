@@ -3,18 +3,18 @@ import { connect } from 'react-iflow'
 
 class Tab extends Component {
   render () {
-    const {listFilter, tabStatus, toggleTab, clearCompleted} = this.props.store
+    const {todo, tabStatus, tabs, jump, clearCompleted} = this.props.store
     return (
       <div>
         <p>
-          total:{listFilter.length}
+          total:{todo.length}
         </p>
         {
-          this.props.store.tabs.map((tab, key) => (
+          tabs.map((tab, key) => (
             <p key={key}>
               <a href={'javascript:;'}
                  style={{color: tab !== tabStatus ? 'blue' : '#000'}}
-                 onClick={() => tab !== tabStatus && toggleTab(tab)}>
+                 onClick={() => tab !== tabStatus && jump(tab)}>
                 {tab}
               </a>
             </p>

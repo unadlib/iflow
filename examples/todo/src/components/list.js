@@ -3,16 +3,16 @@ import { connect } from 'react-iflow'
 
 class List extends Component {
   render () {
-    const {listFilter, toggleTodo} = this.props.store
+    const {todo, toggle} = this.props.store
     return (
       <ul>
         {
-          listFilter.map(({id, completed, text}) =>
+          todo.map((item, key) =>
             <li
-              key={id}
-              style={{textDecoration: completed ? 'line-through' : 'none'}}
-              onClick={() => {toggleTodo(id)}}>
-              {text}
+              key={key}
+              style={{textDecoration: item.completed ? 'line-through' : 'none'}}
+              onClick={() => toggle(item)}>
+              {item.text}
             </li>
           )
         }

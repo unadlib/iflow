@@ -3,89 +3,60 @@ import { getState, setState } from 'iflow'
 export default class Todo {
   constructor () {
     this.list = []
+    this.input = ''
     this.tabStatus = 'All'
     this.tabs = [
       'All',
       'Active',
       'Completed'
     ]
-    this.history = [{
-      list: [],
-      tabStatus: 'All'
-    }]
+    this.history = [{list: []}]
     this.index = 1
   }
 
-  add (text) {
-    this.list.push({
-      id: +new Date() + Math.random().toString().slice(2, -1),
-      text,
-      completed: false,
-    })
+  onChange ({target}) {
+    this.input = target.value
   }
 
-  toggleTodo (currentId) {
-    const current = this.list.find(({id}) => id === currentId)
-    current.completed = !current.completed
+  add (e) {
+    this.list.push({
+      text: this.input
+    })
+    this.input = ''
+    e.preventDefault()
+  }
+
+  toggle (item) {
+    item.completed = !item.completed
   }
 
   clearCompleted () {
     this.list = this.list.filter(({completed}) => !completed)
   }
 
-  toggleTab (tabStatus) {
+  jump (tabStatus) {
     this.tabStatus = tabStatus
   }
 
   record (actionName) {
-    if ([
-        'add',
-        'toggleTodo',
-        'clearCompleted',
-        // 'toggleTab',
-      ].includes(actionName)) {
-      const {
-        list,
-        // tabStatus
-      } = getState(this)
-      this.history.splice(this.index, this.history.length - this.index, {
-        list,
-        // tabStatus,
-      })
+    if (['add', 'toggle', 'clearCompleted'].includes(actionName)) {
+      const {list} = getState(this)
+      this.history.splice(this.index, this.history.length - this.index, {list})
       this.index += 1
     }
   }
 
   doing (index) {
     this.index += index
-    const {
-      list,
-      // tabStatus
-    } = getState(this.history[this.index - 1])
-    setState(this, {
-      list,
-      // tabStatus
-    })
+    const {list} = getState(this.history[this.index - 1])
+    setState(this, {list})
   }
 
-  onSubmit (e, input) {
-    e.preventDefault()
-    if (!!input.value.trim()) {
-      this.add(input.value)
-      input.value = ''
-    }
-  }
-
-  get listFilter () {
-    return this.list.filter(({completed}) => {
-      if (this.tabStatus === this.tabs[0]) {
-        return true
-      } else if (this.tabStatus === this.tabs[1]) {
-        return !completed
-      } else {
-        return !!completed
-      }
-    })
+  get todo () {
+    return this.list
+      .filter(
+        ({completed}) => [true, !completed, completed][this.tabs.indexOf(this.tabStatus)]
+      )
   }
 
   get redoDisable () {
