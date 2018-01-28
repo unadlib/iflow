@@ -1,7 +1,7 @@
 # Connector & Selector
 
 ## Connector
-react-iflow support for a variety of selector usage, if there is no special requirements, we recommend that you use only the connection on the sex, you can not use the selector, iFlow will automatically determine whether the need to update the view components.
+react-iflow support for a variety of selector usage, if there is no special requirements, we recommend that you only use the connector on the line, you can not use the selector, iFlow will automatically determine whether the need to update the view components.
 
 For example:
 

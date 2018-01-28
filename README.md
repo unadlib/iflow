@@ -11,9 +11,9 @@ iFlow is a concise & powerful state management framework, iFlow has no dependenc
 It's dynamic and extensible, you can directly use it to add, delete and reassign the state/action. It completely supports plain class and function based on **mutable data structures**, and be easy to OOP. If you use React, you need use [react-iflow](https://github.com/unadlib/react-iflow) for the connector.
 
 ### Features
-* **🎯Plain class and function** - Concise, Freestyle of the store structure for personal preference.
+* **🎯Plain class and function** - Simple, Freestyle of the store structure for personal preference.
 * **🏬Store tree compose** - Store tree be easy to store share the operating.
-* **⚡Dynamic and hot-swapping** - Both the temporary state and action can be directly and freely changed.
+* **⚡Dynamic and hot-swapping** - Both the state and action can be directly and freely changed.
 * **💥Async function and others type functions** - Any actions will be composed or invoked internal.
 * **🚀Powerful middleware** - Middleware can handle the store any change event.
 * **🔥Store support immutable** - Store is supported to be processed into a immutable store.
